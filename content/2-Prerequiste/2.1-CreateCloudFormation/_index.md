@@ -1,12 +1,12 @@
 ---
-title : "Creating Stack CloudFormation"
+title : "Create CF Stack "
 date : "`r Sys.Date()`"
 weight : 1
 chapter : false
 pre : " <b> 2.1 </b> "
 ---
 
-#### Create Stack CloudFormation
+#### Create CloudFormation Stack
 
 1. Go to [Deploy to AWS](https://ap-southeast-1.console.aws.amazon.com/cloudformation/home?region=ap-southeast-1#/stacks/create?stackName=mysfits-fargate&templateURL=https://s3.amazonaws.com/mythical-mysfits-website/fargate/core.yml) to proceed with stack creation.
 
