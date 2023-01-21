@@ -22,11 +22,11 @@ pre : " <b> 8. </b> "
 
 6. Xác nhận xóa service.
 
-![ Clean up](/images/8-Cleanup/0001-cleanup.png?featherlight=false&width=90pc)
+![Clean up](/images/8-Cleanup/0001-cleanup.png?featherlight=false&width=90pc)
 
-![ Clean up](/images/8-Cleanup/0002-cleanup.png?featherlight=false&width=90pc)
+![Clean up](/images/8-Cleanup/0002-cleanup.png?featherlight=false&width=90pc)
 
-![ Clean up](/images/8-Cleanup/0003-cleanup.png?featherlight=false&width=90pc)
+![Clean up](/images/8-Cleanup/0003-cleanup.png?featherlight=false&width=90pc)
 
 
 #### Xóa repository

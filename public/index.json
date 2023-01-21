@@ -144,7 +144,7 @@
 	"title": "Clean up resources",
 	"tags": [],
 	"description": "",
-	"content": "Clean up resources Remove ECS service   Open the Amazon ECS console at https://console.aws.amazon.com/ecs/.\n  On the navigation bar, select the Region where your cluster is located.\n  In the navigation pane, select Cluster and select the name of the Cluster associated with the lab.\n  On the Cluster page, select Service\n  Select Delete.\n  Confirm delete service.\n  Delete repository   Access ECR: https://console.aws.amazon.com/ecr/repositories.\n  Select Region containing the repository\n  Select Repository\n  Select Private and select the repositories related to the lab.\n  Select Delete\n  Delete ALB  Access to EC2 Select Load Balancer Select ALB of the lab. Select Actions Select Delete  Clear CloudFormation Stack  Access to CloudFormation Select Stack Select the stack related to the lab. Select Delete  "
+	"content": "Clean up resources Remove ECS service   Open the Amazon ECS console at https://console.aws.amazon.com/ecs/.\n  On the navigation bar, select the Region where your cluster is located.\n  In the navigation pane, select Cluster and select the name of the Cluster associated with the lab.\n  On the Cluster page, select Service\n  Select Delete.\n  Confirm delete service.\n  Delete repository   Access ECR: https://console.aws.amazon.com/ecr/repositories.\n  Select Region containing the repository\n  Select Repository\n  Select Private and select the repositories related to the lab.\n  Select Delete\n  Delete ALB  Access to EC2 Select Load Balancer Select ALB of the lab. Select Actions Select Delete  Clear CloudFormation Stack  Access to CloudFormation Select Stack Select the stack related to the lab. Select Deletes  "
 },
 {
 	"uri": "/categories/",
