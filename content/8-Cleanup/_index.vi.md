@@ -22,13 +22,6 @@ pre : " <b> 8. </b> "
 
 6. Xác nhận xóa service.
 
-![Clean up](/images/8-Cleanup/0001-cleanup.png?featherlight=false&width=90pc)
-
-![Clean up](/images/8-Cleanup/0002-cleanup.png?featherlight=false&width=90pc)
-
-![Clean up](/images/8-Cleanup/0003-cleanup.png?featherlight=false&width=90pc)
-
-
 #### Xóa repository
 
 1. Truy cập ECR :  https://console.aws.amazon.com/ecr/repositories.
@@ -37,8 +30,6 @@ pre : " <b> 8. </b> "
 3. Chọn **Repository**
 4. Chọn **Private** và chọn các repository liên quan bài lab.
 5. Chọn **Delete**
-
-![Clean up](/images/8-Cleanup/0004-cleanup.png?featherlight=false&width=90pc)
 
 #### Xóa ALB 
 
