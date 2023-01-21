@@ -22,13 +22,6 @@ pre : " <b> 8. </b> "
 
 6. Confirm delete service.
 
-![Clean up](/images/8-Cleanup/0001-cleanup.png?featherlight=false&width=90pc)
-
-![Clean up](/images/8-Cleanup/0002-cleanup.png?featherlight=false&width=90pc)
-
-![Clean up](/images/8-Cleanup/0003-cleanup.png?featherlight=false&width=90pc)
-
-
 #### Delete repository
 
 1. Access ECR: https://console.aws.amazon.com/ecr/repositories.
@@ -37,8 +30,6 @@ pre : " <b> 8. </b> "
 3. Select **Repository**
 4. Select **Private** and select the repositories related to the lab.
 5. Select **Delete**
-
-![Clean up](/images/8-Cleanup/0004-cleanup.png?featherlight=false&width=90pc)
 
 #### Delete ALB
 
