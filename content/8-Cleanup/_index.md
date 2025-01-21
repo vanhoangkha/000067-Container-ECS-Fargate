@@ -1,6 +1,5 @@
 ---
 title : "Clean up resources"
-date : "`r Sys.Date()`"
 weight : 8
 chapter : false
 pre : " <b> 8. </b> "
@@ -20,7 +19,11 @@ pre : " <b> 8. </b> "
 
 5. Select Delete.
 
+![Clean Stack CloudFormation](/images/8-Cleanup/0001-cleanup.png?featherlight=false&width=90pc)
+
 6. Confirm delete service.
+
+![Clean Stack CloudFormation](/images/8-Cleanup/0001-cleanup-2.png?featherlight=false&width=70pc)
 
 #### Delete repository
 
@@ -31,13 +34,22 @@ pre : " <b> 8. </b> "
 4. Select **Private** and select the repositories related to the lab.
 5. Select **Delete**
 
-#### Delete ALB
+![Clean Stack CloudFormation](/images/8-Cleanup/0002-cleanup.png?featherlight=false&width=70pc)
 
-1. Access to EC2
-2. Select **Load Balancer**
-3. Select **ALB** of the lab.
-4. Select **Actions**
-5. Select **Delete**
+![Clean Stack CloudFormation](/images/8-Cleanup/0002-cleanup-2.png?featherlight=false&width=70pc)
+
+#### Empty the S3 Bucket
+
+1. Enter S3
+2. Select **General purpose buckets** on the left bar
+3. Select the bucket of the lab
+4. Click on **Empty**
+5. Type _Permanently delete_ to confirm
+6. Click on **Delete**
+
+![Clean Stack CloudFormation](/images/8-Cleanup/0004-cleanup.png?featherlight=false&width=90pc)
+
+![Clean Stack CloudFormation](/images/8-Cleanup/0004-cleanup-2.png?featherlight=false&width=90pc)
 
 #### Clear CloudFormation Stack
 
@@ -45,3 +57,5 @@ pre : " <b> 8. </b> "
 2. Select **Stack**
 3. Select the stack related to the lab.
 4. Select **Delete**s
+
+![Clean Stack CloudFormation](/images/8-Cleanup/0005-cleanup.png?featherlight=false&width=90pc)

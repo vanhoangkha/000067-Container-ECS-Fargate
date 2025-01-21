@@ -1,6 +1,5 @@
 ---
 title : "Containerize the Mythical Mysfits monolith"
-date :  "`r Sys.Date()`" 
 weight : 2 
 chapter : false
 pre : " <b> 4.2 </b> "
@@ -20,7 +19,7 @@ pre : " <b> 4.2 </b> "
 
 1. Kiểm tra **Dockerfile.draft**
 
-```
+```dockerfile
 FROM ubuntu:20.04
 RUN apt-get update -y
 RUN apt-get install -y python3-pip python-dev build-essential
@@ -38,7 +37,7 @@ RUN pip3 install --upgrade pip
 
 2. Hoàn thành Dockerfile
 
-```
+```dockerfile
 FROM ubuntu:20.04
 RUN apt-get update -y
 RUN apt-get install -y python3-pip python-dev build-essential
@@ -59,7 +58,7 @@ CMD ["mythicalMysfitsService.py"]
 
 3. Nếu Dockerfile hoàn thành, hãy đổi tên tệp của bạn từ "Dockerfile.draft" thành "Dockerfile" và tiếp tục bước tiếp theo.
 
-```
+```bash
 cd ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service/
 mv Dockerfile.draft Dockerfile
 ```
@@ -74,7 +73,7 @@ Lệnh này cần được chạy trong cùng thư mục chứa Dockerfile của
 
 - Lưu ý khoảng thời gian sau đó cho lệnh xây dựng tìm trong thư mục hiện tại cho Dockerfile.
 
-```
+```bash
 docker build -t monolith-service .
 ```
 
@@ -87,7 +86,7 @@ docker build -t monolith-service .
 Nếu có sự cố xảy ra trong quá trình build, quá trình build sẽ không thành công và dừng lại (**văn bản màu đỏ và các cảnh báo trên đường đi cũng được miễn là quá trình build không bị lỗi**). 
 {{% /notice %}}
 
-```
+```bash
 Removing intermediate container a71540b615b4
  ---> 5ab93ce927c8
 Step 8/10 : EXPOSE 80
@@ -120,7 +119,7 @@ Vì bạn chuyển monolith thành các microservices, bạn sẽ chỉnh sửa 
 
 7. Thực hiện tối ưu Dockerfile
 
-```
+```dockerfile
 FROM ubuntu:20.04
 RUN apt-get update -y
 RUN apt-get install -y python3-pip python-dev build-essential
@@ -138,7 +137,7 @@ CMD ["mythicalMysfitsService.py"]
 
 8. Để thấy được lợi ích của việc tối ưu hóa Dockerfile, trước tiên bạn cần phải **rebuild monolith image** bằng cách sử dụng Dockerfile mới. 
 
-```
+```bash
 docker build -t monolith-service .
 ```
 
@@ -146,18 +145,15 @@ docker build -t monolith-service .
 
 9. Sau đó, chúng ta thực hiện thay đổi **mythicalMysfitsService.py** bằng cách thêm 1 câu bình luận ở cuối file.
 
-```
+```python
 # This is a comment to force a Docker-rebuild
 ```
-
-
 
 ![Containerize the Mythical Mysfits monolith](/images/4-Monolith/4.2-MythicalMysfitsmonolith/0009-monolith.png?featherlight=false&width=90pc)
 
 10. Docker đã lưu vào bộ nhớ cache các yêu cầu trong lần build lại đầu tiên sau khi sắp xếp lại.
 
-
-```
+```bash
 docker build -t monolith-service .
 ```
 
@@ -168,7 +164,7 @@ docker build -t monolith-service .
 
 12. Sử dụng **docker images [OPTIONS] [REPOSITORY[:TAG]]** để liệt kê danh sách image
 
-```
+```bash
 docker images
 ```
 
@@ -176,8 +172,8 @@ docker images
 
 13. Chạy container và kiểm tra
 
-```
-TABLE_NAME=$(aws dynamodb list-tables | jq -r .TableNames[0])
+```bash
+export TABLE_NAME="$(jq < ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/cfn-output.json -r '.DynamoTable')"
 docker run -p 8000:80 -e AWS_DEFAULT_REGION=$AWS_REGION -e DDB_TABLE_NAME=$TABLE_NAME monolith-service
 ```
 
@@ -188,18 +184,16 @@ Lưu ý: Bạn có thể tìm thấy tên bảng DynamoDB của mình trong tệ
 
 ![Containerize the Mythical Mysfits monolith](/images/4-Monolith/4.2-MythicalMysfitsmonolith/00013-monolith.png?featherlight=false&width=90pc)
 
-14.   Để kiểm tra chức năng cơ bản của dịch vụ monolith, hãy truy vấn dịch vụ bằng tiện ích như **[cURL](https://curl.se/)** đi kèm với **Cloud9**.
+14.   Để kiểm tra chức năng cơ bản của dịch vụ monolith, hãy truy vấn dịch vụ bằng tiện ích như **[cURL](https://curl.se/)** đi kèm với bản phân phối linux.
 
-- Nhấp vào dấu cộng bên cạnh các tab của bạn và chọn **New Terminal** hoặc nhấp vào **Window -> New Terminal từ menu Cloud9** để mở một phiên shell mới để chạy lệnh curl sau.
-
-```
+```bash
 curl http://localhost:8000/mysfits
 ```
 
 - Bạn sẽ thấy một mảng JSON với dữ liệu về **Mythical Mysfits**
 
 {{% notice note %}} 
-Lưu ý: Các quy trình chạy bên trong vùng chứa Docker có thể xác thực bằng DynamoDB vì chúng có thể truy cập điểm cuối API siêu dữ liệu EC2 đang chạy tại 169.254.169.254để truy xuất thông tin đăng nhập cho hồ sơ cá thể đã được đính kèm với môi trường Cloud9 của chúng tôi trong tập lệnh thiết lập ban đầu. Các quy trình trong vùng chứa không thể truy cập tệp **~/.aws/credentials**  trong hệ thống tệp máy chủ (trừ khi nó được gắn vào vùng chứa một cách rõ ràng).
+Lưu ý: Các quy trình chạy bên trong vùng chứa Docker có thể xác thực bằng DynamoDB vì chúng có thể truy cập điểm cuối API siêu dữ liệu EC2 đang chạy tại 169.254.169.254 để truy xuất thông tin đăng nhập cho hồ sơ cá thể đã được đính kèm với môi trường Cloud9 của chúng tôi trong tập lệnh thiết lập ban đầu. Các quy trình trong vùng chứa không thể truy cập tệp **~/.aws/credentials**  trong hệ thống tệp máy chủ (trừ khi nó được gắn vào vùng chứa một cách rõ ràng).
 {{% /notice %}}
 
 
@@ -209,7 +203,7 @@ Lưu ý: Các quy trình chạy bên trong vùng chứa Docker có thể xác th
 
 - Monolith container chạy trên nền trước với tính năng stdout/stderr in ra màn hình, khi nhận được request, sẽ hiện thị **200 "OK"**
 
-```
+```bash
  * Serving Flask app "mythicalMysfitsService" (lazy loading)
  * Environment: production
    WARNING: This is a development server. Do not use it in a production deployment.
@@ -229,8 +223,8 @@ Lưu ý: Container chạy ở foreground với tính năng stdout / stderr in v�
 {{% /notice %}}
 
 
-```
-TABLE_NAME=$(aws dynamodb list-tables | jq -r .TableNames[0])
+```bash
+export TABLE_NAME="$(jq < ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/cfn-output.json -r '.DynamoTable')"
 docker run -d -p 8000:80 -e AWS_DEFAULT_REGION=$AWS_REGION -e DDB_TABLE_NAME=$TABLE_NAME monolith-service
 ```
 
@@ -238,7 +232,7 @@ docker run -d -p 8000:80 -e AWS_DEFAULT_REGION=$AWS_REGION -e DDB_TABLE_NAME=$TA
 
 17.  Liệt kê danh sách docker container để kiểm tra container đang chạy
 
-```
+```bash
 docker ps
 ```
 
@@ -246,7 +240,7 @@ docker ps
 
 18. Xem monolith đang chạy trong danh sách (lưu trữ Container ID để sử dụng docker logs). Lặp lại lệnh **curl**, sau đó thực hiện kiểm tra logs
 
-```
+```bash
 docker logs <CONTAINER_ID>
 ```
 
@@ -259,17 +253,15 @@ docker logs <CONTAINER_ID>
 - Chúng ta sẽ có 2 repository: **STACK_NAME-mono-xxx và STACK_NAME-like-xxx**
 - Chọn vào icon sao chép **URL** của **Mono** repository( sử dụng trong các bước tiếp)
 
-
 {{% notice note %}}
  Note: repository URI  là duy nhất
 {{% /notice %}}
-
 
 ![Containerize the Mythical Mysfits monolith](/images/4-Monolith/4.2-MythicalMysfitsmonolith/00019-monolith.png?featherlight=false&width=90pc)
 
 20.  Thực hiện gán tag và push container image và monolith repository
 
-```
+```bash
 MONO_ECR_REPOSITORY_URI=$(aws ecr describe-repositories | jq -r .repositories[].repositoryUri | grep mono)
 docker tag monolith-service:latest $MONO_ECR_REPOSITORY_URI:latest
 docker push $MONO_ECR_REPOSITORY_URI:latest
@@ -277,7 +269,7 @@ docker push $MONO_ECR_REPOSITORY_URI:latest
 
 ![Containerize the Mythical Mysfits monolith](/images/4-Monolith/4.2-MythicalMysfitsmonolith/00020-monolith.png?featherlight=false&width=90pc)
 
-21. Truy cập vào trang **ECR repository**, đã xuất hiện image được upload và tagged là latest.
+21. Truy cập vào trang **ECR repository**, đã xuất hiện image được upload và được gắn thẻ **latest**.
 
 ![Containerize the Mythical Mysfits monolith](/images/4-Monolith/4.2-MythicalMysfitsmonolith/00021-monolith.png?featherlight=false&width=90pc)
 

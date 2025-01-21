@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.99.1" />
+    <meta name="generator" content="Hugo 0.140.2">
     <meta name="description" content="">
 <meta name="author" content="journeyoftheaverageguy@gmail.com">
 
@@ -12,21 +12,21 @@
     <title>Deploy the container using AWS Fargate :: MONOLITH TO MICROSERVICES WITH DOCKER AND AWS FARGATE</title>
 
     
-    <link href="/css/nucleus.css?1701083024" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1701083024" rel="stylesheet">
-    <link href="/css/hybrid.css?1701083024" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1701083024" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1701083024" rel="stylesheet">
-    <link href="/css/auto-complete.css?1701083024" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1701083024" rel="stylesheet">
-    <link href="/css/theme.css?1701083024" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1701083024" rel="stylesheet">
+    <link href="/css/nucleus.css?1737448079" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1737448079" rel="stylesheet">
+    <link href="/css/hybrid.css?1737448079" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1737448079" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1737448079" rel="stylesheet">
+    <link href="/css/auto-complete.css?1737448079" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1737448079" rel="stylesheet">
+    <link href="/css/theme.css?1737448079" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1737448079" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1701083024" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1737448079" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1701083024"></script>
+    <script src="/js/jquery-3.3.1.min.js?1737448079"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1701083024"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1701083024"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1737448079"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1737448079"></script>
 <script type="text/javascript">
     
-        var baseurl = "";
+        var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1701083024"></script>
+<script type="text/javascript" src="/js/search.js?1737448079"></script>
 
     
   </div>
@@ -139,13 +139,13 @@
  
   
     
-    <li data-nav-id="/2-prerequiste/2.1-createcloudformation/" title="Create CF Stack " class="dd-item 
+    <li data-nav-id="/2-prerequiste/2.1-createcloudformation/" title="Create your CloudFormation Stack " class="dd-item 
         
         
         
         ">
       <a href="/2-prerequiste/2.1-createcloudformation/">
-           <b> 2.1 </b> Create CF Stack 
+           <b> 2.1 </b> Create your CloudFormation Stack 
           
             <i class="fas fa-check read-icon"></i>
           
@@ -167,13 +167,13 @@
  
   
     
-    <li data-nav-id="/2-prerequiste/2.2-setup/" title="Clone Repository" class="dd-item 
+    <li data-nav-id="/2-prerequiste/2.2-setup/" title="Setup your environment" class="dd-item 
         
         
         
         ">
       <a href="/2-prerequiste/2.2-setup/">
-           <b> 2.2 </b> Clone Repository
+           <b> 2.2 </b> Setup your environment
           
             <i class="fas fa-check read-icon"></i>
           
@@ -261,13 +261,13 @@
  
   
     
-    <li data-nav-id="/3-containersanddocker/3.1-dockerbasic/" title="Basic Docker" class="dd-item 
+    <li data-nav-id="/3-containersanddocker/3.1-dockerbasic/" title="Docker Basics" class="dd-item 
         
         
         
         ">
       <a href="/3-containersanddocker/3.1-dockerbasic/">
-           <b> 3.1 </b> Basic Docker
+           <b> 3.1 </b> Docker Basics
           
             <i class="fas fa-check read-icon"></i>
           
@@ -419,7 +419,7 @@
   
     
     <li data-nav-id="/5-amazonecsandawsfargate/" title="Deploy the container using AWS Fargate" class="dd-item 
-        parent
+        
         active
         
         ">
@@ -757,7 +757,7 @@
     <br>
     <br>
         <b> Last Updated </b> <br>
-        <i><font color=orange>27-11-2023</font></i>
+        <i><font color=orange>21-01-2025</font></i>
     </left>
     <left>
         <br>
@@ -765,6 +765,7 @@
             <b> Team </b> <br>
             <i> <a href="https://www.linkedin.com/in/jotaguy"  style="color:orange">Gia Hưng </a> <br>
             <a href="https://www.linkedin.com/in/vanhoangkha/" style="color:orange">Hoàng Kha </a> <br>
+            <a href="https://www.linkedin.com/in/longhg0220/" style="color:orange">Hoàng Long </a> <br>
         </i>
         </left>
 
@@ -804,7 +805,7 @@
             
           
           
-            <a href='/'>Monolith to Microservices with Docker and AWS Fargate</a> > Deploy the container using AWS Fargate
+            <a href='/'>Monolithic app to Microservices with Docker, ECS and AWS Fargate</a> > Deploy the container using AWS Fargate
           
         
           
@@ -850,62 +851,69 @@
 	<h4 id="deploy-the-container-using-aws-fargate">Deploy the container using AWS Fargate</h4>
 <p><img src="/images/1-Introduce/02-arch.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
 <ol>
-<li>First we will create <strong>Task definitions</strong> to run monolith</li>
-</ol>
+<li>
+<p>First we will create <strong>Task definitions</strong> to run monolith</p>
 <ul>
 <li>Go to <strong><a href="https://ap-southeast-1.console.aws.amazon.com/ecs/v2/task-definitions?region=ap-southeast-1">ECS</a></strong></li>
 <li>Select <strong>Task definitions</strong></li>
 <li>Find the Task definition named <strong>Monolith-Definition-STACK_NAME</strong></li>
 </ul>
 <p><img src="/images/5-AmazonECSandAWSFargate/0001-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
-<ol start="2">
-<li>Go to <strong><a href="https://ap-southeast-1.console.aws.amazon.com/ecr/repositories?region=ap-southeast-1">ECR</a></strong></li>
-</ol>
+</li>
+<li>
+<p>Go to <strong><a href="https://ap-southeast-1.console.aws.amazon.com/ecr/repositories?region=ap-southeast-1">ECR</a></strong></p>
 <ul>
 <li>Copy <strong>Image URI</strong></li>
 </ul>
 <p><img src="/images/5-AmazonECSandAWSFargate/0002-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
-<ol start="3">
-<li>Back to interface <strong><a href="https://ap-southeast-1.console.aws.amazon.com/ecs/v2/task-definitions?region=ap-southeast-1">ECS</a></strong></li>
-</ol>
+</li>
+<li>
+<p>Back to interface <strong><a href="https://ap-southeast-1.console.aws.amazon.com/ecs/v2/task-definitions?region=ap-southeast-1">ECS</a></strong></p>
 <ul>
 <li>Select <strong>Monolith-Definition-STACK_NAME</strong></li>
 </ul>
 <p><img src="/images/5-AmazonECSandAWSFargate/0003-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
-<ol start="4">
-<li>In the interface <strong>Monolith-Definition-STACK_NAME</strong> revision 1. We will create a new revision.</li>
-</ol>
+</li>
+<li>
+<p>In the interface <strong>Monolith-Definition-STACK_NAME</strong> revision 1. We will create a new revision.</p>
 <ul>
 <li>Select <strong>Create new revision</strong></li>
 </ul>
 <p><img src="/images/5-AmazonECSandAWSFargate/0004-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
-<ol start="5">
-<li>Configure <strong>Container</strong></li>
-</ol>
+</li>
+<li>
+<p>Configure the OS and amount of CPU and memory</p>
+<p><img src="/images/5-AmazonECSandAWSFargate/0006-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
+</li>
+<li>
+<p>Configure <strong>Container</strong></p>
 <ul>
 <li><strong>Name</strong>, enter the service name of your choice (In the lab, enter <strong><code>monolith-service</code></strong>)</li>
 <li>Paste the copied <strong>Image URI</strong> into <strong>Image URI</strong></li>
 </ul>
 <p><img src="/images/5-AmazonECSandAWSFargate/0005-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
-<ol start="6">
-<li>Select <strong>Create</strong></li>
-</ol>
-<p><img src="/images/5-AmazonECSandAWSFargate/0006-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
-<ol start="7">
-<li>Finish creating a new revision</li>
-</ol>
+</li>
+<li>
+<p>Configure <strong>Log collection</strong></p>
+<ul>
+<li>Find the log group of the lab in the CloudFormation stack, copy the physical ID and paste it in the value of the <code>awslogs-group</code> key.</li>
+</ul>
+<p><img src="/images/5-AmazonECSandAWSFargate/0006-awsfargate-2.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
+</li>
+<li>
+<p>Finish creating a new revision</p>
 <p><img src="/images/5-AmazonECSandAWSFargate/0007-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
-<ol start="8">
-<li>In view <strong>Monolith-Definition-STACK_NAME</strong> revision 2</li>
-</ol>
+</li>
+<li>
+<p>In the <strong>Monolith-Definition-STACK_NAME</strong> console UI:</p>
 <ul>
 <li>Select <strong>Deploy</strong></li>
 <li>Select <strong>Run task</strong></li>
 </ul>
 <p><img src="/images/5-AmazonECSandAWSFargate/0008-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
-<ol start="9">
-<li>In the <strong>Deploy</strong> interface</li>
-</ol>
+</li>
+<li>
+<p>In the <strong>Deploy</strong> interface</p>
 <ul>
 <li><strong>Environment</strong>, select <strong>Existing cluster</strong>, select <strong>Cluster-STACK_NAME</strong></li>
 <li>Select <strong>Launch type</strong></li>
@@ -913,17 +921,17 @@
 <li><strong>Platform version</strong> select <strong>LATEST</strong></li>
 </ul>
 <p><img src="/images/5-AmazonECSandAWSFargate/0009-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
-<ol start="10">
-<li>In the <strong>Deployment configuration</strong> section</li>
-</ol>
+</li>
+<li>
+<p>In the <strong>Deployment configuration</strong> section</p>
 <ul>
 <li>Select <strong>Task</strong></li>
 <li><strong>Desired</strong> choose 1</li>
 </ul>
 <p><img src="/images/5-AmazonECSandAWSFargate/00010-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
-<ol start="11">
-<li>Configure <strong>Networking</strong></li>
-</ol>
+</li>
+<li>
+<p>Configure <strong>Networking</strong></p>
 <ul>
 <li><strong>VPC</strong>, select <strong>Mysfits-VPC-STACK_NAME</strong></li>
 <li><strong>Subnets</strong> select <strong>Mysfits-PublicOne-STACK_NAME</strong></li>
@@ -933,42 +941,52 @@
 <li>Select <strong>Deploy</strong></li>
 </ul>
 <p><img src="/images/5-AmazonECSandAWSFargate/00011-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
-<ol start="12">
-<li>Create task successfully</li>
-</ol>
+</li>
+<li>
+<p>Create task successfully</p>
 <p><img src="/images/5-AmazonECSandAWSFargate/00012-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
-<ol start="13">
-<li>Select the task you just created and select <strong>Networking</strong>.</li>
-</ol>
+</li>
+<li>
+<p>Select the task you just created and select <strong>Networking</strong>.</p>
 <ul>
 <li>Purpose of using <strong>Public IP</strong> to use <strong>curl</strong> command to check by making <strong>GET request</strong>.</li>
 <li>When using <strong>Fargate</strong> initialization, each task gets its own <strong>ENI</strong> and <strong>Public IP</strong> and <strong>Private IP</strong>.</li>
 </ul>
 <p><img src="/images/5-AmazonECSandAWSFargate/00013-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
-<ol start="14">
-<li>Make a browser access</li>
-</ol>
+</li>
+<li>
+<p>Make a browser access</p>
 <pre tabindex="0"><code>http://TASK_PUBLIC_IP_ADDRESS/mysfits
 </code></pre><p><img src="/images/5-AmazonECSandAWSFargate/00014-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
-<ol start="15">
-<li>Execute the <strong>curl</strong> command on <strong>Cloud9</strong></li>
-</ol>
-<pre tabindex="0"><code>curl http://TASK_PUBLIC_IP_ADDRESS/mysfits
-</code></pre><p><img src="/images/5-AmazonECSandAWSFargate/00015-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
-<ol start="16">
-<li>Select the task you just created and select <strong>Logs</strong></li>
-</ol>
+</li>
+<li>
+<p>Execute the <strong>curl</strong> command on the CLI of your IDE</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl http://TASK_PUBLIC_IP_ADDRESS/mysfits
+</span></span></code></pre></div><p><img src="/images/5-AmazonECSandAWSFargate/00015-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
+</li>
+<li>
+<p>Select the task you just created and select <strong>Logs</strong></p>
 <p><img src="/images/5-AmazonECSandAWSFargate/00016-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
-<ol start="17">
-<li>Using AWS CloudWatch to View <strong>Log events</strong></li>
-</ol>
+</li>
+<li>
+<p>Using AWS CloudWatch to View <strong>Log events</strong></p>
 <ul>
-<li>Select <strong>monolith log group</strong> (<strong>STACK_NAME-MythicalMonolithLogGroup-XXX</strong>)</li>
+<li>
+<p>Open the <a href="https://console.aws.amazon.com/cloudwatch/home">CloudWatch Console</a></p>
+</li>
+<li>
+<p>Select <strong>monolith log group</strong> (<strong>STACK_NAME-MythicalMonolithLogGroup-XXX</strong>)</p>
+</li>
 </ul>
 <p><img src="/images/5-AmazonECSandAWSFargate/00017-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
-<ol start="18">
-<li>After running the <strong>curl</strong> command successfully, we can delete the task</li>
-</ol>
+<ul>
+<li>Choose a log stream to see the detailed event logs</li>
+</ul>
+<p><img src="/images/5-AmazonECSandAWSFargate/00017a-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
+<p><img src="/images/5-AmazonECSandAWSFargate/00017b-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
+</li>
+<li>
+<p>After running the <strong>curl</strong> (<em>step 15</em>) command successfully, we can delete the task</p>
 <ul>
 <li>Select <strong>Task</strong></li>
 <li>Select <strong>Monolith-Definition-STACK_NAME</strong> revision 2.</li>
@@ -976,14 +994,20 @@
 <li>Select <strong>Stop selected</strong></li>
 </ul>
 <p><img src="/images/5-AmazonECSandAWSFargate/00018-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
-<ol start="19">
-<li>Verify <strong>Stop</strong> and select <strong>Stop</strong></li>
-</ol>
+</li>
+<li>
+<p>If asked, type <strong>Stop</strong> to verify and click on <strong>Stop</strong></p>
 <p><img src="/images/5-AmazonECSandAWSFargate/00019-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
-<ol start="20">
-<li>Delete task successfully.</li>
-</ol>
+</li>
+<li>
+<p>Delete task successfully.</p>
 <p><img src="/images/5-AmazonECSandAWSFargate/00020-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
+</li>
+<li>
+<p>Delete the HTTP port 80 rule you have created for the default Security group of the VPC in this lab&rsquo;s stack.</p>
+<p><img src="/images/5-AmazonECSandAWSFargate/00021-awsfargate.png?featherlight=false&amp;width=90pc" alt="Deploy the container using AWS Fargate"></p>
+</li>
+</ol>
 
 
 
@@ -1376,19 +1400,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1701083025"></script>
-    <script src="/js/perfect-scrollbar.min.js?1701083025"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1701083025"></script>
-    <script src="/js/jquery.sticky.js?1701083025"></script>
-    <script src="/js/featherlight.min.js?1701083025"></script>
-    <script src="/js/highlight.pack.js?1701083025"></script>
+    <script src="/js/clipboard.min.js?1737448079"></script>
+    <script src="/js/perfect-scrollbar.min.js?1737448079"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1737448079"></script>
+    <script src="/js/jquery.sticky.js?1737448079"></script>
+    <script src="/js/featherlight.min.js?1737448079"></script>
+    <script src="/js/highlight.pack.js?1737448079"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1701083025"></script>
-    <script src="/js/learn.js?1701083025"></script>
-    <script src="/js/hugo-learn.js?1701083025"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1737448079"></script>
+    <script src="/js/learn.js?1737448079"></script>
+    <script src="/js/hugo-learn.js?1737448079"></script>
 
-    <link href="/mermaid/mermaid.css?1701083025" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1701083025"></script>
+    <link href="/mermaid/mermaid.css?1737448079" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1737448079"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -1,88 +1,102 @@
 ---
-title : "Clone Repository"
-date : "`r Sys.Date()`"
+title : "Setup your environment"
 weight : 2
 chapter : false
 pre : " <b> 2.2 </b> "
 ---
 
-#### Clone Repository
+#### Clone the workshop Repository
 
-1. Clone **Mythical Mysfits Workshop Repository**
+1. Open the **environment** folder
 
-- In the **Cloud9 IDE** interface, we use the following command to clone the repository:
+  - In the **VSCode** interface, we first open the folder `~/environment` from the top menu:
 
-```
-git clone https://github.com/aws-samples/amazon-ecs-mythicalmysfits-workshop.git
-```
+  ![vscfile](/images/2-Prerequiste/2.2-Setup/a0001-env.png)
 
-![Set up](/images/2-Prerequiste/2.2-Setup/0001-setup.png?featherlight=false&width=90pc)
+  ![vscfile](/images/2-Prerequiste/2.2-Setup/a0002-env.png)
 
-2. After cloning the repository, change the directory's path:
+  Click **I trust the author** on the next dialog.
 
-```
-cd amazon-ecs-mythicalmysfits-workshop/workshop-1
-```
+  ![vscfile](/images/2-Prerequiste/2.2-Setup/a0003-env.png)
 
-![Set up](/images/2-Prerequiste/2.2-Setup/0002-setup.png?featherlight=false&width=90pc)
+2. Clone **Mythical Mysfits Workshop Repository**
 
-3. We execute the following command line to install the environment to prepare for the lab.
+  - Open the terminal from the top menu:
 
-```
-script/setup
-```
-- This script will delete unnecessary **Docker images** to free up space.
-- Also populate the **DynamoDB** table with original data.
-- Upload web content to **S3**.
-- Install some authentication mechanisms related to **Docker**.
+  ![vscfile](/images/2-Prerequiste/2.2-Setup/a0004-env.png)
 
-```
-#! /bin/bash
+  - In the terminal command line interface, run the following command:
 
-set -eu
+  ```bash
+  git clone https://github.com/longthg-workshops/amazon-ecs-mythicalmysfits-workshop.git
+  ```
 
-echo "Removing unneeded docker images..."
-docker images -q | xargs docker rmi || true
+  ![Set up](/images/2-Prerequiste/2.2-Setup/0001-setup.png?featherlight=false&width=90pc)
 
-echo "Installing dependencies..."
-sudo yum install -y jq
+3. After cloning the repository, change the directory's path:
 
-echo "Fetching CloudFormation outputs..."
-script/fetch-outputs
+  ```
+  cd amazon-ecs-mythicalmysfits-workshop/workshop-1
+  ```
 
-echo "Populating DynamoDB table..."
-script/load-ddb
+  ![Set up](/images/2-Prerequiste/2.2-Setup/0002-setup.png?featherlight=false&width=90pc)
 
-echo "Uploading static site to S3..."
-if [[ $# -eq 1 ]]; then
-  script/upload-site $1
-else
-  script/upload-site
-fi
+4. We execute the following command line to install the environment to prepare for the lab.
 
-echo "Installing ECR Cred Helper..."
-sudo script/credhelper
+  ```bash
+  script/setup
+  ```
+  - This script will delete unnecessary **Docker images** to free up space.
+  - Also populate the **DynamoDB** table with original data.
+  - Upload web content to **S3**.
+  - Install some authentication mechanisms related to **Docker**.
 
-echo "Attaching Instance Profile to Cloud9..."
-script/associate-profile
+  ```bash
+  #! /bin/bash
 
-echo "Success!"
-```
+  set -eu
 
+  echo "Removing unneeded docker images..."
+  docker images -q | xargs docker rmi || true
 
-![Set up](/images/2-Prerequiste/2.2-Setup/0003-setup.png?featherlight=false&width=90pc)
+  echo "Installing dependencies..."
+  sudo yum install -y jq
 
-4. When you see **"Success!"** on the interface, the command has been executed successfully.
+  echo "Fetching CloudFormation outputs..."
+  script/fetch-outputs
 
-![Set up](/images/2-Prerequiste/2.2-Setup/0004-setup.png?featherlight=false&width=90pc)
+  echo "Populating DynamoDB table..."
+  script/load-ddb
 
-5. Check-in **S3** interface
+  echo "Uploading static site to S3..."
+  if [[ $# -eq 1 ]]; then
+    script/upload-site $1
+  else
+    script/upload-site
+  fi
 
-- In the bucket have been uploaded website files
+  echo "Installing ECR Cred Helper..."
+  sudo script/credhelper
+
+  echo "Attaching Instance Profile to Cloud9..."
+  script/associate-profile
+
+  echo "Success!"
+  ```
+
+  ![Set up](/images/2-Prerequiste/2.2-Setup/0003-setup.png?featherlight=false&width=90pc)
+
+  When you see **"Success!"** on the interface, the command has been executed successfully.
+
+  ![Set up](/images/2-Prerequiste/2.2-Setup/0004-setup.png?featherlight=false&width=90pc)
+
+5. Check the **S3** interface
+
+- In the bucket where we've just uploaded the website files
 
 ![Set up](/images/2-Prerequiste/2.2-Setup/0005-setup.png?featherlight=false&width=90pc)
 
-6. Test in the **DynamoDB** interface
+6. Have a look at the **DynamoDB** interface
 
 - The original data has been filled in **Table** DynamoDB
 
@@ -90,14 +104,15 @@ echo "Success!"
 
 7. We should configure **aws cli** with our **current region** as default:
 
-```
-export ACCOUNT_ID=$(aws sts get-caller-identity --output text --query Account)
-export AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
+  ```bash
+  export ACCOUNT_ID=$(aws sts get-caller-identity --output text --query Account)
+  export TOKEN=$(curl -s -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 60")
+  export AWS_REGION=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
 
-echo "export ACCOUNT_ID=${ACCOUNT_ID}" >> ~/.bash_profile
-echo "export AWS_REGION=${AWS_REGION}" >> ~/.bash_profile
-aws configure set default.region ${AWS_REGION}
-aws configure get default.region
-```
+  echo "export ACCOUNT_ID=${ACCOUNT_ID}" >> ~/.bash_profile
+  echo "export AWS_REGION=${AWS_REGION}" >> ~/.bash_profile
+  aws configure set default.region ${AWS_REGION}
+  aws configure get default.region
+  ```
 
-![Set up](/images/2-Prerequiste/2.2-Setup/0007-setup.png?featherlight=false&width=90pc)
+  ![Set up](/images/2-Prerequiste/2.2-Setup/0007-setup.png?featherlight=false&width=90pc)

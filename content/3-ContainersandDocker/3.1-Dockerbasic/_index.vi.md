@@ -1,12 +1,9 @@
 ---
-title : "Docker cơ bản"
-date :  "`r Sys.Date()`" 
+title : "Những điều cơ bản về Docker"
 weight : 1 
 chapter : false
 pre : " <b> 3.1 </b> "
 ---
-
-#### Docker cơ bản
 
 #### Tổng quan
 
@@ -31,7 +28,7 @@ Trong bài lab, chúng ta thực hiện các lệnh cơ bản Docker với **AWS
 
 1. Kiểm tra client và server đang hoạt động bằng lệnh:
 
-```
+```bash
 docker --version
 ```
 
@@ -41,13 +38,13 @@ docker --version
 
 - Lệnh pull
 
-```
+```bash
 docker pull [OPTIONS] NAME[:TAG|@DIGEST]
 ```
 
 -  Trước hết, chúng ta sử dụng lệnh **docker pull nginx\:latest** để kéo **nginx image** mới nhất từ **Docker Hub**.
 
-```
+```bash
 docker pull nginx\:latest
 ```
  
@@ -57,13 +54,13 @@ docker pull nginx\:latest
 
 - Usage
 
-```
+```bash
 docker images [OPTIONS] [REPOSITORY[:TAG]]
 ```
 
 - Mục đích liệt kê danh sách các image.
 
-```
+```bash
 docker images
 ```
 
@@ -71,20 +68,20 @@ docker images
 
 4. **Docker Daemon** đóng vai trò **server**, nhận các **RESTful requests** từ **Docker Client** và thực thi. 
 
-- Chúng ta sử dụng lệnh **docker run -d -p 8080:80 --name nginx nginx\:latest**.
+- Chúng ta sử dụng lệnh **docker run -d -p 8081:80 --name nginx nginx\:latest**.
 
-```
-docker run -d -p 8080:80 --name nginx nginx\:latest
+```bash
+docker run -d -p 8081:80 --name nginx nginx\:latest
 ```
 
 - **-d**: Chạy container ở chế độ ngầm
 - Đặt tên cho container là **nginx**
-- **-p 8080:80**: Expose cổng 80 của container ra cổng 8080 của máy **host**
+- **-p 8081:80**: Expose cổng 80 của container ra cổng 8081 của máy **host**
 - **nginx:latest**: Container được khởi chạy từ image là **nginx:latest**
 
 - Lệnh tham khảo để chạy một container:
 
-```
+```bash
 docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 ```
 
@@ -92,27 +89,27 @@ docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 
 5. Kiểm tra các **container nginx** đang chạy bằng lệnh:
 
-```
+```bash
 docker ps
 ```
 
 - Để thực hiện liệt kê các container ta thực hiện lệnh:
 
-```
+```bash
 docker ps [OPTIONS]
 ```
 
 ![Docker basic](/images/3-ContainersandDocker/3.1-Dockerbasic/0005-dockerbasic.png?featherlight=false&width=90pc)
 
-6. Sử dụng lệnh **curl http://localhost:8080** để sử dụng **nginx container** và xác thực nó đang hoạt động với **index.html**
+6. Sử dụng lệnh **curl http://localhost:8081** để sử dụng **nginx container** và xác thực nó đang hoạt động với **index.html**
 
-```
-curl http://localhost:8080
+```bash
+curl http://localhost:8081
 ```
 
-- Tham khảo lệnh **curl** cơ bản:
+- Mẫu lệnh **curl** có dạng sau:
 
-```
+```bash
 curl [options/URLs]
 ```
 
@@ -127,26 +124,27 @@ Ngoài ra bạn có thể đọc thêm về **[CURL](https://curl.se/)**
 
 - Chúng ta sử dụng lệnh **docker logs nginx**. Xuất hiện sự kiện **curl request**
 
-```
+```bash
 docker logs nginx
 ```
 
 - Tham khảo lệnh tìm nạp nhật ký của container:
 
-```
+```bash
  docker logs [OPTIONS] CONTAINER
 ```
 
 ![Docker basic](/images/3-ContainersandDocker/3.1-Dockerbasic/0007-dockerbasic.png?featherlight=false&width=90pc)
 
 8. Tiếp đến, thực hiện lệnh **docker exec -it nginx /bin/bash** để tương tác với **container filesystem và constraints**
-```
+
+```bash
 docker exec -it nginx /bin/bash
 ```
 
 - Tham khảo lệnh tương tác trong container đang chạy:
 
-```
+```bash
 docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
 ```
 
@@ -154,7 +152,7 @@ docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
 
 9. Chúng ta thực hiện xem nội dung của nginx bằng lệnh:
 
-```
+```bash
 cd /usr/share/nginx/html
 cat index.html
 ```
@@ -167,21 +165,21 @@ cat index.html
 
 11. Để dừng chạy container chúng ta thực hiện lệnh
 
-```
+```bash
 docker stop nginx
 ```
 
 - Tham khảo lệnh dừng một hoặc nhiều container:
 
-```
+```bash
 docker stop [OPTIONS] CONTAINER [CONTAINER...]
 ```
 
 ![Docker basic](/images/3-ContainersandDocker/3.1-Dockerbasic/00011-dockerbasic.png?featherlight=false&width=90pc)
 
-12. Sử dụng **docker ps -a** để xem container (container đã dừng) để khởi động lại sử dụng lệnh: **```docker start nginx```**
+12. Sử dụng **docker ps -a** để xem container (bao gồm container đã dừng) để khởi động lại sử dụng lệnh: **```docker start nginx```**
 
-```
+```bash
 docker ps -a
 ```
 
@@ -189,13 +187,13 @@ docker ps -a
 
 13. Thực hiện xóa container (đầu vào là container ID hoặc container name)
 
-```
+```bash
 docker rm nginx
 ```
 
 - Tham khảo lệnh xóa một hoặc nhiều container:
 
-```
+```bash
 docker rm [OPTIONS] CONTAINER [CONTAINER...]
 ```
 
@@ -203,14 +201,13 @@ docker rm [OPTIONS] CONTAINER [CONTAINER...]
 
 14. Thực hiện xóa nginx image bằng lệnh (định dạng image được xóa có thể là **name:tag** hoặc **IMAGE ID**)
 
-```
+```bash
 docker rmi nginx\:latest
 ```
 - Tham khảo lệnh xóa một hoặc nhiều image:
 
-```
+```bash
  docker rmi [OPTIONS] IMAGE [IMAGE...]
 ```
 
 ![Docker basic](/images/3-ContainersandDocker/3.1-Dockerbasic/00014-dockerbasic.png?featherlight=false&width=90pc)
-

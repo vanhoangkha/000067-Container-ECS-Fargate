@@ -1,6 +1,5 @@
 ---
 title : "Update Service"
-date : "`r Sys.Date()`"
 weight : 2
 chapter : false
 pre : " <b> 7.2 </b> "
@@ -13,13 +12,13 @@ pre : " <b> 7.2 </b> "
 - Select **Cluster**
 - Select **Cluster-STACK_NAME**
 
-![ Microservices with AWS Fargate](/images/7-microservices/7.2-Updateservice/0001-updateservice.png?featherlight=false&width=90pc)
+![Microservices with AWS Fargate](/images/7-microservices/7.2-Updateservice/0001-updateservice.png?featherlight=false&width=90pc)
 
 2. In the cluster,
 
 - Select **Service**
 - Select the existing **Service** (STACK_NAME-MythicalMonolithService-xxx)
-- Select **Edit**
+- Select **Update**
 
 ![ Microservices with AWS Fargate](/images/7-microservices/7.2-Updateservice/0002-updateservice.png?featherlight=false&width=90pc)
 
@@ -38,7 +37,7 @@ pre : " <b> 7.2 </b> "
 
 - Select **Cluster**
 - Select **Service**
-- Select **Monolith-Definition-STACK_NAME** revision 3.
+- Select **Monolith-Definition-STACK_NAME** revision 23.
 
 ![ Microservices with AWS Fargate](/images/7-microservices/7.2-Updateservice/0005-updateservice.png?featherlight=false&width=90pc)
 

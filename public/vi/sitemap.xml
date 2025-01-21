@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/vi/3-containersanddocker/3.1-dockerbasic/</loc>
+    <loc>/vi/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/3-containersanddocker/3.1-dockerbasic/"
+                href="/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="/vi/3-containersanddocker/3.1-dockerbasic/"
+                href="/vi/"
                 />
   </url><url>
     <loc>/vi/1-introduce/</loc>
@@ -38,16 +38,16 @@
                 href="/vi/4-monolith/4.1-checkcloudformation/"
                 />
   </url><url>
-    <loc>/vi/</loc>
+    <loc>/vi/3-containersanddocker/3.1-dockerbasic/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/"
+                href="/3-containersanddocker/3.1-dockerbasic/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="/vi/"
+                href="/vi/3-containersanddocker/3.1-dockerbasic/"
                 />
   </url><url>
     <loc>/vi/7-microservices/7.1-createnewrevision/</loc>
@@ -98,18 +98,6 @@
                 href="/vi/7-microservices/7.2-updateservice/"
                 />
   </url><url>
-    <loc>/vi/2-prerequiste/2.2-setup/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/2-prerequiste/2.2-setup/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="/vi/2-prerequiste/2.2-setup/"
-                />
-  </url><url>
     <loc>/vi/3-containersanddocker/3.2-containerimage/</loc>
     <xhtml:link
                 rel="alternate"
@@ -132,6 +120,18 @@
                 rel="alternate"
                 hreflang="vi"
                 href="/vi/4-monolith/4.2-mythicalmysfitsmonolith/"
+                />
+  </url><url>
+    <loc>/vi/2-prerequiste/2.2-setup/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/2-prerequiste/2.2-setup/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="/vi/2-prerequiste/2.2-setup/"
                 />
   </url><url>
     <loc>/vi/7-microservices/7.3-builddockerimage/</loc>

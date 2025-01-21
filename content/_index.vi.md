@@ -1,11 +1,10 @@
 ---
-title : "Monolith to Microservices with Docker and AWS Fargate"
-date :  "`r Sys.Date()`" 
+title : "Chuyển đổi Ứng dụng nguyên khối thành Microservices với Docker, ECS và AWS Fargate"
 weight : 1 
 chapter : false
 ---
 
-# Monolith to Microservices with Docker and AWS Fargate
+# Chuyển đổi Ứng dụng nguyên khối thành Microservices với Docker, ECS và AWS Fargate
 
 #### Tổng quan
 
@@ -22,7 +21,6 @@ Docker hoạt động bằng cách cung cấp phương thức tiêu chuẩn đ�
 
 Các dịch vụ AWS như **AWS Fargate, Amazon ECS, Amazon EKS và AWS Batch** giúp bạn dễ dàng chạy các container Docker ở quy mô lớn.
 
-
 ![Docker basic](/images/1-Introduce/0001-docker.png?featherlight=false&width=60pc)
 
-Trong bài lab, chúng ta sẽ thực hiện chuyển **Monolith** sang **Microservices** với **Docker** và **AWS Fargate**
+Trong bộ lab, chúng ta sẽ thực hiện chuyển **Ứng dụng nguyên khối** sang **Microservices** với **Docker**, **ECS** và **AWS Fargate**.

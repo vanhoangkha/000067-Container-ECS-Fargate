@@ -1,6 +1,5 @@
 ---
 title : "Testing CloudFormation"
-date : "`r Sys.Date()`"
 weight : 1
 chapter : false
 pre : " <b> 4.1 </b> "
@@ -11,12 +10,44 @@ pre : " <b> 4.1 </b> "
 1. Access to **CloudFormation**
 
 - Select the created **stack**
+- Choose the **Resources** tab
+- Search for the s3 bucket with the Logical ID **"MythicalBucket"**
+- Click on the Physical ID of the bucket to open the S3 console
+
+![Check CloudFormation](/images/4-Monolith/4.1-CheckCloudFormation/a0001-cfn.png?featherlight=false&width=90pc)
+
+- On the Bucket Console, choose **Permissions**
+
+![Check CloudFormation](/images/4-Monolith/4.1-CheckCloudFormation/a0002-s3.png?featherlight=false&width=90pc)
+
+Add the following code to your bucket policy:
+```json
+{
+    "Version": "2012-10-17",
+    "Id": "PutObjPolicy",
+    "Statement": [
+        {
+            "Sid": "DenyObjectsThatAreNotSSEKMS",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::<replace-with-your-bucket-name>/*"
+        }
+    ]
+}
+```
+
+![Check CloudFormation](/images/4-Monolith/4.1-CheckCloudFormation/a0003-s3.png?featherlight=false&width=90pc)
+
+2. Return to **CloudFormation**
+
+- Select the created **stack**
 - Select **Outputs**
 - Select **S3WebsiteURL**
 
 ![Check CloudFormation](/images/4-Monolith/4.1-CheckCloudFormation/0001-checkcloudformation.png?featherlight=false&width=90pc)
 
-2. Use your browser to access **S3WebsiteURL**.
+3. Use your browser to access **S3WebsiteURL**.
 
 ![Check CloudFormation](/images/4-Monolith/4.1-CheckCloudFormation/0002-checkcloudformation.png?featherlight=false&width=90pc)
 

@@ -1,6 +1,5 @@
 ---
 title : "Containerize the Mythical Mysfits monolith"
-date : "`r Sys.Date()`"
 weight : 2
 chapter : false
 pre : " <b> 4.2 </b> "
@@ -20,7 +19,7 @@ pre : " <b> 4.2 </b> "
 
 1. Check **Dockerfile.draft**
 
-```
+```dockerfile
 FROM ubuntu:20.04
 RUN apt-get update -y
 RUN apt-get install -y python3-pip python-dev build-essential
@@ -38,7 +37,7 @@ RUN pip3 install --upgrade pip
 
 2. Complete Dockerfile
 
-```
+```dockerfile
 FROM ubuntu:20.04
 RUN apt-get update -y
 RUN apt-get install -y python3-pip python-dev build-essential
@@ -51,7 +50,7 @@ RUN pip3 install -r ./requirements.txt
 #[TODO]: Specify a listening port for the container
 EXPOSE 80
 #[TODO]: Run the mythicalMysfitsService.py as the final step
-ENTRYPOINT["python3"]
+ENTRYPOINT ["python3"]
 CMD ["mythicalMysfitsService.py"]
 ```
 
@@ -59,7 +58,7 @@ CMD ["mythicalMysfitsService.py"]
 
 3. If the Dockerfile is complete, rename your file from "Dockerfile.draft" to "Dockerfile" and continue to the next step.
 
-```
+```bash
 cd ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service/
 mv Dockerfile.draft Dockerfile
 ```
@@ -74,7 +73,7 @@ This command needs to be run in the same directory where your Dockerfile is loca
 
 - Note the time after that for the build command to look in the current directory for the Dockerfile.
 
-```
+```bash
 docker build -t monolith-service .
 ```
 
@@ -87,7 +86,7 @@ docker build -t monolith-service .
 If something goes wrong during the build, the build will fail and stop (**red text and warnings along the way as long as the build doesn't fail**).
 {{% /notice %}}
 
-```
+```bash
 Removing intermediate container a71540b615b4
  ---> 5ab93ce927c8
 Step 8/10 : EXPOSE 80
@@ -120,7 +119,7 @@ Since you convert monoliths into microservices, you will edit the source code (e
 
 7. Dockerfile optimization
 
-```
+```dockerfile
 FROM ubuntu:20.04
 RUN apt-get update -y
 RUN apt-get install -y python3-pip python-dev build-essential
@@ -130,7 +129,7 @@ RUN pip3 install -r ./requirements.txt
 COPY ./service /MythicalMysfitsService
 WORKDIR /MythicalMysfitsService
 EXPOSE 80
-ENTRYPOINT["python3"]
+ENTRYPOINT ["python3"]
 CMD ["mythicalMysfitsService.py"]
 ```
 
@@ -138,7 +137,7 @@ CMD ["mythicalMysfitsService.py"]
 
 8. To see the benefits of Dockerfile optimization, you need to first **rebuild the monolith image** using the new Dockerfile.
 
-```
+```bash
 docker build -t monolith-service .
 ```
 
@@ -146,18 +145,15 @@ docker build -t monolith-service .
 
 9. Then we make changes to **mythicalMysfitsService.py** by adding a comment at the end of the file.
 
-```
+```python
 # This is a comment to force a Docker-rebuild
 ```
 
-
-
-![Containerize the Mythical Mysfits monolith](/images/4-Monolith/4.2-MythicalMysfitsmonolith/0009-monolith.png?featherlight=false&width=90pc)
+![Containerize the Mythical Mysfits monolith](/images/4-Monolith/4.2-MythicalMysfitsmonolith/0009-monolith.png?featherlight=false&width=50pc)
 
 10. Docker cached the requests on the first rebuild after reordering.
 
-
-```
+```bash
 docker build -t monolith-service .
 ```
 
@@ -169,16 +165,16 @@ docker build -t monolith-service .
 
 12. Use **docker images [OPTIONS] [REPOSITORY[:TAG]]** to list images
 
-```
+```bash
 docker images
 ```
 
-![Containerize the Mythical Mysfits monolith](/images/4-Monolith/4.2-MythicalMysfitsmonolith/00012-monolith.png?featherlight=false&width=90pc)
+![Containerize the Mythical Mysfits monolith](/images/4-Monolith/4.2-MythicalMysfitsmonolith/00012-monolith.png?featherlight=false&width=60pc)
 
 13. Run the container and test
 
-```
-TABLE_NAME=$(aws dynamodb list-tables | jq -r .TableNames[0])
+```bash
+export TABLE_NAME="$(jq < ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/cfn-output.json -r '.DynamoTable')"
 docker run -p 8000:80 -e AWS_DEFAULT_REGION=$AWS_REGION -e DDB_TABLE_NAME=$TABLE_NAME monolith-service
 ```
 
@@ -186,14 +182,11 @@ docker run -p 8000:80 -e AWS_DEFAULT_REGION=$AWS_REGION -e DDB_TABLE_NAME=$TABLE
 Note: You can find your DynamoDB table names in the **workshop-1/cfn-output.json** file which is derived from the CloudFormation Stack output.
 {{% /notice %}}
 
-
 ![Containerize the Mythical Mysfits monolith](/images/4-Monolith/4.2-MythicalMysfitsmonolith/00013-monolith.png?featherlight=false&width=90pc)
 
-14. To test the basic functionality of a monolith service, query the service using a utility like **[cURL](https://curl.se/)** included with **Cloud9**.
+14. To test the basic functionality of a monolith service, query the service using a utility like **[cURL](https://curl.se/)** included with the linux distribution.
 
-- Click the plus sign next to your tabs and select **New Terminal** or click **Window -> New Terminal from the Cloud9** menu to open a new shell session to run the following curl command.
-
-```
+```bash
 curl http://localhost:8000/mysfits
 ```
 
@@ -210,7 +203,7 @@ Note: Processes running inside a Docker container can authenticate with DynamoDB
 
 - Monolith container running in the foreground with stdout/stderr print to the screen, when receiving the request, will display **200 "OK"**
 
-```
+```bash
  * Serving Flask app "mythicalMysfitsService" (lazy loading)
  * Environment: production
    WARNING: This is a development server. Do not use it in a production deployment.
@@ -230,8 +223,8 @@ Note: Container runs in the foreground with stdout/stderr printing to the consol
 {{% /notice %}}
 
 
-```
-TABLE_NAME=$(aws dynamodb list-tables | jq -r .TableNames[0])
+```bash
+export TABLE_NAME="$(jq < ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/cfn-output.json -r '.DynamoTable')"
 docker run -d -p 8000:80 -e AWS_DEFAULT_REGION=$AWS_REGION -e DDB_TABLE_NAME=$TABLE_NAME monolith-service
 ```
 
@@ -239,7 +232,7 @@ docker run -d -p 8000:80 -e AWS_DEFAULT_REGION=$AWS_REGION -e DDB_TABLE_NAME=$TA
 
 17. List docker containers to check running containers
 
-```
+```bash
 docker ps
 ```
 
@@ -247,7 +240,7 @@ docker ps
 
 18. See the running monolith in the list (store the Container ID to use docker logs). Repeat the **curl** command, then do a log check
 
-```
+```bash
 docker logs <CONTAINER_ID>
 ```
 
@@ -260,17 +253,15 @@ docker logs <CONTAINER_ID>
 - We will have 2 repositories: **STACK_NAME-mono-xxx and STACK_NAME-like-xxx**
 - Select the icon to copy **URL** of **Mono** repository (use in the next steps)
 
-
 {{% notice note %}}
  Note: repository URI is unique
 {{% /notice %}}
-
 
 ![Containerize the Mythical Mysfits monolith](/images/4-Monolith/4.2-MythicalMysfitsmonolith/00019-monolith.png?featherlight=false&width=90pc)
 
 20. Implement tag assignment and push container image and monolith repository
 
-```
+```bash
 MONO_ECR_REPOSITORY_URI=$(aws ecr describe-repositories | jq -r .repositories[].repositoryUri | grep mono)
 docker tag monolith-service:latest $MONO_ECR_REPOSITORY_URI:latest
 docker push $MONO_ECR_REPOSITORY_URI:latest

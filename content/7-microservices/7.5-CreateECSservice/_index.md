@@ -1,6 +1,5 @@
 ---
 title : "Create ECS Service"
-date : "`r Sys.Date()`"
 weight : 5
 chapter : false
 pre : " <b> 7.5 </b> "
@@ -25,9 +24,19 @@ pre : " <b> 7.5 </b> "
 - Perform naming **Service name**
 - **Desired tasks**, choose 1
 
-![ Microservices with AWS Fargate](/images/7-microservices/7.5-CreateECSservice/0003-createecsservice.png?featherlight=false&width=90pc)
+![ Microservices with AWS Fargate](/images/7-microservices/7.5-CreateECSservice/0003-createecsservice.png?featherlight=false&width=40pc)
 
-4. Configure **Load Balancing**
+4. Configure **Network**
+
+- **VPC**, select **Mysfits-STACK_NAME**
+- **Subnets**, choose private subnet
+- Go to **Security group**, select **Use an existing security group**
+- We choose **Security group** default and make sure to configure inbound **HTTP** (port 80)
+- Select **Deploy**
+
+![ Microservices with AWS Fargate](/images/7-microservices/7.5-CreateECSservice/0004-createecsservice.png?featherlight=false&width=90pc)
+
+5. Configure **Load Balancing**
 
 - Select **Application Load Balancer**
 - Select **Use an existing load balancer**
@@ -37,17 +46,9 @@ pre : " <b> 7.5 </b> "
 - **Health check path**, enter **/**
 - **Health check grace period**, enter **300**
 
-![ Microservices with AWS Fargate](/images/7-microservices/7.5-CreateECSservice/0004-createecsservice.png?featherlight=false&width=90pc)
-
-5. Configure **Network**
-
-- **VPC**, select **Mysfits-STACK_NAME**
-- **Subnets**, choose private subnet
-- Go to **Security group**, select **Use an existing security group**
-- We choose **Security group** default and make sure to configure inbound **HTTP** (port 80)
-- Select **Deploy**
-
 ![ Microservices with AWS Fargate](/images/7-microservices/7.5-CreateECSservice/0005-createecsservice.png?featherlight=false&width=90pc)
+
+![ Microservices with AWS Fargate](/images/7-microservices/7.5-CreateECSservice/0005-createecsservice-2.png?featherlight=false&width=90pc)
 
 6. Thus, we create the service deploy successfully.
 
@@ -61,7 +62,7 @@ pre : " <b> 7.5 </b> "
 
 ![ Microservices with AWS Fargate](/images/7-microservices/7.5-CreateECSservice/0008-createecsservice.png?featherlight=false&width=90pc)
 
-9. Implement endpoint removal from monolith using Cloud9.
+9. Remove the **monolith** endpoint app into the code:.
 
 - In the monolith folder, open **mythicalMysfitsService.py** find the following code:
 
@@ -75,6 +76,8 @@ def likeMysfit(mysfit_id):
     flaskResponse.headers["Content-Type"] = "application/json"
     return flaskResponse
 ```
+
+Either delete or comment the code lines.
 
 ![ Microservices with AWS Fargate](/images/7-microservices/7.5-CreateECSservice/0009-createecsservice.png?featherlight=false&width=90pc)
 

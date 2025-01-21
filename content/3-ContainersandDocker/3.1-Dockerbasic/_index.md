@@ -1,12 +1,9 @@
 ---
-title : "Basic Docker"
-date : "`r Sys.Date()`"
+title : "Docker Basics"
 weight : 1
 chapter : false
 pre : " <b> 3.1 </b> "
 ---
-
-#### Basic Docker
 
 #### Overview
 
@@ -31,7 +28,7 @@ In the lab, we execute basic Docker commands with **AWS Cloud9**
 
 1. Check the client and server are working with the command:
 
-```
+```bash
 docker --version
 ```
 
@@ -41,13 +38,13 @@ docker --version
 
 - command pull
 
-```
+```bash
 docker pull [OPTIONS] NAME[: TAG|@DIGEST]
 ```
 
 - First of all, we use the **docker pull nginx\:latest** command to pull the latest **nginx image** from **Docker Hub**.
 
-```
+```bash
 docker pull nginx\:latest
 ```
  
@@ -57,13 +54,13 @@ docker pull nginx\:latest
 
 - Usage
 
-```
+```bash
 docker images [OPTIONS] [REPOSITORY[: TAG]]
 ```
 
 - Purpose of listing images.
 
-```
+```bash
 docker images
 ```
 
@@ -71,20 +68,20 @@ docker images
 
 4. **Docker Daemon** acts as **server**, receives **RESTful requests** from **Docker Client** and executes.
 
-- We use the command **docker run -d -p 8080:80 --name nginx nginx\:latest**.
+- We use the command **docker run -d -p 8081:80 --name nginx nginx\:latest**.
 
-```
-docker run -d -p 8080:80 --name nginx nginx\:latest
+```bash
+docker run -d -p 8081:80 --name nginx nginx\:latest
 ```
 
-- **-d**: Run the container in the background
+- **-d**: May stand for "detached" - Run the container in the background
 - Name the container as **nginx**
-- **-p 8080:80**: Expose port 80 of container to port 8080 of machine **host**
+- **-p 8081:80**: Expose port 80 of container to port 8081 of machine **host**
 - **nginx:latest**: Container launched from image is **nginx:latest**
 
 - Reference command to run a container:
 
-```
+```bash
 docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 ```
 
@@ -92,27 +89,27 @@ docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 
 5. Check the **nginx** containers running with the command:
 
-```
+```bash
 docker ps
 ```
 
 - To perform the list of containers we execute the command:
 
-```
+```bash
 docker ps [OPTIONS]
 ```
 
 ![Docker basic](/images/3-ContainersandDocker/3.1-Dockerbasic/0005-dockerbasic.png?featherlight=false&width=90pc)
 
-6. Use command **curl http://localhost:8080** to use **nginx container** and verify it is working with **index.html**
+6. Use command **curl http://localhost:8081** to use **nginx container** and verify it is working with **index.html**
 
-```
-curl http://localhost:8080
+```bash
+curl http://localhost:8081
 ```
 
-- Refer to the basic **curl** command:
+- Template for the **curl** command:
 
-```
+``` bash
 curl [options/URLs]
 ```
 
@@ -127,34 +124,35 @@ Also you can read more about **[CURL](https://curl.se/)**
 
 - We use the **docker logs nginx** command. **curl request** event occurs
 
-```
+```bash
 docker logs nginx
 ```
 
 - Refer to the fetch log command of the container:
 
-```
+```bash
  docker logs [OPTIONS] CONTAINER
 ```
 
 ![Docker basic](/images/3-ContainersandDocker/3.1-Dockerbasic/0007-dockerbasic.png?featherlight=false&width=90pc)
 
 8. Next, execute the command **docker exec -it nginx /bin/bash** to interact with **container filesystem and constraints**
-```
+
+```bash
 docker exec -it nginx /bin/bash
 ```
 
-- Consult the interactive command in the running container:
+- How to execute a command in a running container:
 
-```
+```bash
 docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
 ```
 
 ![Docker basic](/images/3-ContainersandDocker/3.1-Dockerbasic/0008-dockerbasic.png?featherlight=false&width=90pc)
 
-9. We perform the content view of nginx with the command:
+9. We then proceed to view the content of nginx with the command:
 
-```
+```bash
 cd /usr/share/nginx/html
 cat index.html
 ```
@@ -167,21 +165,21 @@ cat index.html
 
 11. To stop running the container we execute the command
 
-```
+```bash
 docker stop nginx
 ```
 
 - Refer to the command to stop one or more containers:
 
-```
+```bash
 docker stop [OPTIONS] CONTAINER [CONTAINER...]
 ```
 
 ![Docker basic](/images/3-ContainersandDocker/3.1-Dockerbasic/00011-dockerbasic.png?featherlight=false&width=90pc)
 
-12. Use **docker ps -a** to view container (stopped container) to restart use command: **```docker start nginx```**
+12. Use **docker ps -a** to view container (including stopped container) to restart use command: **```docker start nginx```**
 
-```
+```bash
 docker ps -a
 ```
 
@@ -189,13 +187,13 @@ docker ps -a
 
 13. Perform container deletion (input is container ID or container name)
 
-```
+```bash
 docker rm nginx
 ```
 
-- Refer to the command to delete one or more containers:
+- See the command to delete one or more containers:
 
-```
+```bash
 docker rm [OPTIONS] CONTAINER [CONTAINER...]
 ```
 
@@ -203,12 +201,12 @@ docker rm [OPTIONS] CONTAINER [CONTAINER...]
 
 14. Perform nginx image deletion with command (deleted image format can be **name: tag** or **IMAGE ID**)
 
-```
+```bash
 docker rmi nginx\:latest
 ```
 - Refer to the command to delete one or more images:
 
-```
+```bash
  docker rmi [OPTIONS] IMAGE [IMAGE...]
 ```
 

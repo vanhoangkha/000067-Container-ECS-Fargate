@@ -1,6 +1,5 @@
 ---
 title : "Deploy the container using AWS Fargate"
-date : "`r Sys.Date()`"
 weight : 5
 chapter : false
 pre : " <b> 5. </b> "
@@ -12,130 +11,147 @@ pre : " <b> 5. </b> "
 
 1. First we will create **Task definitions** to run monolith
 
-- Go to **[ECS](https://ap-southeast-1.console.aws.amazon.com/ecs/v2/task-definitions?region=ap-southeast-1)**
-- Select **Task definitions**
-- Find the Task definition named **Monolith-Definition-STACK_NAME**
+    - Go to **[ECS](https://ap-southeast-1.console.aws.amazon.com/ecs/v2/task-definitions?region=ap-southeast-1)**
+    - Select **Task definitions**
+    - Find the Task definition named **Monolith-Definition-STACK_NAME**
 
-![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/0001-awsfargate.png?featherlight=false&width=90pc)
+    ![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/0001-awsfargate.png?featherlight=false&width=90pc)
 
 2. Go to **[ECR](https://ap-southeast-1.console.aws.amazon.com/ecr/repositories?region=ap-southeast-1)**
 
-- Copy **Image URI**
+    - Copy **Image URI**
 
-![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/0002-awsfargate.png?featherlight=false&width=90pc)
+    ![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/0002-awsfargate.png?featherlight=false&width=90pc)
 
 3. Back to interface **[ECS](https://ap-southeast-1.console.aws.amazon.com/ecs/v2/task-definitions?region=ap-southeast-1)**
 
-- Select **Monolith-Definition-STACK_NAME**
+    - Select **Monolith-Definition-STACK_NAME**
 
-![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/0003-awsfargate.png?featherlight=false&width=90pc)
+    ![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/0003-awsfargate.png?featherlight=false&width=90pc)
 
 4. In the interface **Monolith-Definition-STACK_NAME** revision 1. We will create a new revision.
 
-- Select **Create new revision**
+    - Select **Create new revision**
 
-![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/0004-awsfargate.png?featherlight=false&width=90pc)
+    ![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/0004-awsfargate.png?featherlight=false&width=90pc)
 
-5. Configure **Container**
+5. Configure the OS and amount of CPU and memory
 
-- **Name**, enter the service name of your choice (In the lab, enter **```monolith-service```**)
-- Paste the copied **Image URI** into **Image URI**
+    ![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/0006-awsfargate.png?featherlight=false&width=90pc)
 
-![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/0005-awsfargate.png?featherlight=false&width=90pc)
+6. Configure **Container**
 
-6. Select **Create**
+    - **Name**, enter the service name of your choice (In the lab, enter **```monolith-service```**)
+    - Paste the copied **Image URI** into **Image URI**
 
-![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/0006-awsfargate.png?featherlight=false&width=90pc)
+    ![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/0005-awsfargate.png?featherlight=false&width=90pc)
 
-7. Finish creating a new revision
+7. Configure **Log collection**
 
-![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/0007-awsfargate.png?featherlight=false&width=90pc)
+    - Find the log group of the lab in the CloudFormation stack, copy the physical ID and paste it in the value of the `awslogs-group` key.
 
-8. In view **Monolith-Definition-STACK_NAME** revision 2
+    ![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/0006-awsfargate-2.png?featherlight=false&width=90pc)
 
-- Select **Deploy**
-- Select **Run task**
+8. Finish creating a new revision
 
-![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/0008-awsfargate.png?featherlight=false&width=90pc)
+    ![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/0007-awsfargate.png?featherlight=false&width=90pc)
 
-9. In the **Deploy** interface
+9. In the **Monolith-Definition-STACK_NAME** console UI:
 
-- **Environment**, select **Existing cluster**, select **Cluster-STACK_NAME**
-- Select **Launch type**
-- In **Launch type**, select **FARGATE**
-- **Platform version** select **LATEST**
- 
-![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/0009-awsfargate.png?featherlight=false&width=90pc)
+    - Select **Deploy**
+    - Select **Run task**
 
-10. In the **Deployment configuration** section
+    ![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/0008-awsfargate.png?featherlight=false&width=90pc)
 
-- Select **Task**
-- **Desired** choose 1
+10. In the **Deploy** interface
 
-![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00010-awsfargate.png?featherlight=false&width=90pc)
-
-11. Configure **Networking**
-
-- **VPC**, select **Mysfits-VPC-STACK_NAME**
-- **Subnets** select **Mysfits-PublicOne-STACK_NAME**
-- Select **Security Group**, Select **Use an existing security group**
-- **Security group name**, choose **default** but configure **inbound** port 80
-- **Auto-assign public IP** - "ENABLED"
-- Select **Deploy**
-
-![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00011-awsfargate.png?featherlight=false&width=90pc)
-
-12. Create task successfully
-
-![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00012-awsfargate.png?featherlight=false&width=90pc)
-
-13. Select the task you just created and select **Networking**.
-
-- Purpose of using **Public IP** to use **curl** command to check by making **GET request**.
-- When using **Fargate** initialization, each task gets its own **ENI** and **Public IP** and **Private IP**.
-
-![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00013-awsfargate.png?featherlight=false&width=90pc)
-
-14. Make a browser access
-
-```
-http://TASK_PUBLIC_IP_ADDRESS/mysfits
-```
-
-![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00014-awsfargate.png?featherlight=false&width=90pc)
-
-15. Execute the **curl** command on **Cloud9**
-
-```
-curl http://TASK_PUBLIC_IP_ADDRESS/mysfits
-```
-
-
-![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00015-awsfargate.png?featherlight=false&width=90pc)
-
-16. Select the task you just created and select **Logs**
+    - **Environment**, select **Existing cluster**, select **Cluster-STACK_NAME**
+    - Select **Launch type**
+    - In **Launch type**, select **FARGATE**
+    - **Platform version** select **LATEST**
     
-![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00016-awsfargate.png?featherlight=false&width=90pc)
+    ![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/0009-awsfargate.png?featherlight=false&width=90pc)
 
-17. Using AWS CloudWatch to View **Log events**
+11. In the **Deployment configuration** section
 
-- Select **monolith log group** (**STACK_NAME-MythicalMonolithLogGroup-XXX**)
+    - Select **Task**
+    - **Desired** choose 1
 
-![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00017-awsfargate.png?featherlight=false&width=90pc)
+    ![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00010-awsfargate.png?featherlight=false&width=90pc)
 
-18. After running the **curl** command successfully, we can delete the task
+12. Configure **Networking**
 
-- Select **Task**
-- Select **Monolith-Definition-STACK_NAME** revision 2.
-- Select **Stop**
-- Select **Stop selected**
+    - **VPC**, select **Mysfits-VPC-STACK_NAME**
+    - **Subnets** select **Mysfits-PublicOne-STACK_NAME**
+    - Select **Security Group**, Select **Use an existing security group**
+    - **Security group name**, choose **default** but configure **inbound** port 80
+    - **Auto-assign public IP** - "ENABLED"
+    - Select **Deploy**
 
-![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00018-awsfargate.png?featherlight=false&width=90pc)
+    ![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00011-awsfargate.png?featherlight=false&width=90pc)
 
-19. Verify **Stop** and select **Stop**
+13. Create task successfully
 
-![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00019-awsfargate.png?featherlight=false&width=90pc)
+    ![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00012-awsfargate.png?featherlight=false&width=90pc)
 
-20. Delete task successfully.
+14. Select the task you just created and select **Networking**.
 
-![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00020-awsfargate.png?featherlight=false&width=90pc)
+    - Purpose of using **Public IP** to use **curl** command to check by making **GET request**.
+    - When using **Fargate** initialization, each task gets its own **ENI** and **Public IP** and **Private IP**.
+
+    ![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00013-awsfargate.png?featherlight=false&width=90pc)
+
+15. Make a browser access
+
+    ```
+    http://TASK_PUBLIC_IP_ADDRESS/mysfits
+    ```
+
+    ![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00014-awsfargate.png?featherlight=false&width=90pc)
+
+16. Execute the **curl** command on the CLI of your IDE
+
+    ```bash
+    curl http://TASK_PUBLIC_IP_ADDRESS/mysfits
+    ```
+
+    ![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00015-awsfargate.png?featherlight=false&width=90pc)
+
+17. Select the task you just created and select **Logs**
+    
+    ![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00016-awsfargate.png?featherlight=false&width=90pc)
+
+18. Using AWS CloudWatch to View **Log events**
+
+    - Open the [CloudWatch Console](https://console.aws.amazon.com/cloudwatch/home)
+
+    - Select **monolith log group** (**STACK_NAME-MythicalMonolithLogGroup-XXX**)
+
+    ![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00017-awsfargate.png?featherlight=false&width=90pc)
+
+    - Choose a log stream to see the detailed event logs
+
+    ![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00017a-awsfargate.png?featherlight=false&width=90pc)
+
+    ![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00017b-awsfargate.png?featherlight=false&width=90pc)
+
+19. After running the **curl** (_step 15_) command successfully, we can delete the task
+
+    - Select **Task**
+    - Select **Monolith-Definition-STACK_NAME** revision 2.
+    - Select **Stop**
+    - Select **Stop selected**
+
+    ![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00018-awsfargate.png?featherlight=false&width=90pc)
+
+20. If asked, type **Stop** to verify and click on **Stop**
+
+    ![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00019-awsfargate.png?featherlight=false&width=90pc)
+
+21. Delete task successfully.
+
+    ![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00020-awsfargate.png?featherlight=false&width=90pc)
+
+22. Delete the HTTP port 80 rule you have created for the default Security group of the VPC in this lab's stack.
+
+    ![Deploy the container using AWS Fargate](/images/5-AmazonECSandAWSFargate/00021-awsfargate.png?featherlight=false&width=90pc)

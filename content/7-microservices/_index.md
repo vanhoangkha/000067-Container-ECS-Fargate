@@ -1,6 +1,5 @@
 ---
 title : "Microservices with AWS Fargate"
-date : "`r Sys.Date()`"
 weight : 7
 chapter : false
 pre : " <b> 7. </b> "

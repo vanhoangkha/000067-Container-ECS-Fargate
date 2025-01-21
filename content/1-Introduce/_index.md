@@ -1,6 +1,5 @@
 ---
 title : "Introduction"
-date :  "`r Sys.Date()`" 
 weight : 1 
 chapter : false
 pre : " <b> 1. </b> "
@@ -26,4 +25,4 @@ AWS services like **AWS Fargate, Amazon ECS, Amazon EKS, and AWS Batch** make it
 
 ![Docker basic](/images/1-Introduce/0001-docker.png?featherlight=false&width=60pc)
 
-In the lab, we will be implementing **Monolith** to **Microservices** with **Docker** and **AWS Fargate**
+In the lab, we will be converting a **Monolithic app** to **Microservices** with **Docker**, **ECS** and **AWS Fargate**

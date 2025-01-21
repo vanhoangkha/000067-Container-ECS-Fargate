@@ -1,6 +1,5 @@
 ---
 title : "Create ECS Service"
-date :  "`r Sys.Date()`" 
 weight : 5
 chapter : false
 pre : " <b> 7.5 </b> "
@@ -77,26 +76,26 @@ def likeMysfit(mysfit_id):
     flaskResponse.headers["Content-Type"] = "application/json"
     return flaskResponse
 ```
-- Bạn có thể xóa hoặc comment code.
+Bạn có thể xóa hoặc comment code.
 
-![ Microservices with AWS Fargate](/images/7-microservices/7.5-CreateECSservice/0009-createecsservice.png?featherlight=false&width=90pc)
+![Microservices with AWS Fargate](/images/7-microservices/7.5-CreateECSservice/0009-createecsservice.png?featherlight=false&width=90pc)
 
 10.  Sau đó, chúng ta thực hiện build monolith image 
 
-```
- cd ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service 
- docker build -t monolith-service:nolike2 .
+```bash
+cd ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service 
+docker build -t monolith-service:nolike2 .
 ```
 
-![ Microservices with AWS Fargate](/images/7-microservices/7.5-CreateECSservice/00010-createecsservice.png?featherlight=false&width=90pc)
+![Microservices with AWS Fargate](/images/7-microservices/7.5-CreateECSservice/00010-createecsservice.png?featherlight=false&width=90pc)
 
 11.  Thực hiện gán tag và push lên monolith ECR repository.
 
 - Chúng ta sử dụng tag: nolike2.
 
-```
- docker tag monolith-service:nolike2 $MONO_ECR_REPOSITORY_URI:nolike2
- docker push $MONO_ECR_REPOSITORY_URI:nolike2
+```bash
+docker tag monolith-service:nolike2 $MONO_ECR_REPOSITORY_URI:nolike2
+docker push $MONO_ECR_REPOSITORY_URI:nolike2
 ```
 <!-- ![ Microservices with AWS Fargate](/images/7-microservices/7.5-CreateECSservice/00011-createecsservice.png?featherlight=false&width=90pc)
  -->

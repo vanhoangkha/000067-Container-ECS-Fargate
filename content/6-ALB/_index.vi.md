@@ -1,6 +1,5 @@
 ---
 title : "ALB và ECS Service"
-date :  "`r Sys.Date()`" 
 weight : 6 
 chapter : false
 pre : " <b> 6. </b> "
@@ -39,13 +38,13 @@ Dịch vụ ECS và ALB ban đầu đã được CloudFormation tạo. Trong bà
 4. Trong giao diện **Cluster-STACK_NAME**, chúng ta tiến hành cập nhật **service**
 
 - Chọn **Services**
-- Chọn **Edit**
+- Nhấn vào **Update**
 
 ![Deploy the container using AWS Fargate](/images/6-ALB/0004-alb.png?featherlight=false&width=90pc)
 
 5. Trong giao diện cập nhật service
 
-- Chọn **Revision** 2
+- Chọn **Revision** mới nhất
 - Chọn **Update**
 
 ![Deploy the container using AWS Fargate](/images/6-ALB/0005-alb.png?featherlight=false&width=90pc)
@@ -104,13 +103,12 @@ Dịch vụ ECS và ALB ban đầu đã được CloudFormation tạo. Trong bà
 - Chọn **Log groups**
 - Quan sát log event
 
-
 ![Deploy the container using AWS Fargate](/images/6-ALB/00015-alb.png?featherlight=false&width=90pc)
 
 16. Để phân biệt giữa **service** và task. Ta có thể thực hiện các bước sau: 
 
-- Chọn **Service**
-- Chọn **Edit**
+- Chọn dịch vụ với **Revision** mới nhất
+- Chọn **Update**
 
 ![Deploy the container using AWS Fargate](/images/6-ALB/00018-alb.png?featherlight=false&width=90pc)
 

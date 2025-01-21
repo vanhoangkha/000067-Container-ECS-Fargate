@@ -1,6 +1,5 @@
 ---
 title : "ALB and ECS Service"
-date : "`r Sys.Date()`"
 weight : 6
 chapter : false
 pre : " <b> 6. </b> "
@@ -38,15 +37,15 @@ The original ECS and ALB service was created by CloudFormation. In this lab, you
 
 4. In the **Cluster-STACK_NAME** interface, we proceed to update **service**
 
-- Select **Services**
-- Select **Edit**
+- In the **Services** section, choose the lab service
+- Click **Update**
 
 ![Deploy the container using AWS Fargate](/images/6-ALB/0004-alb.png?featherlight=false&width=90pc)
 
 5. In the service update interface
 
-- Select **Revision** 2
-- Select **Update**
+- Select the latest **Revision**
+- Click **Update**
 
 ![Deploy the container using AWS Fargate](/images/6-ALB/0005-alb.png?featherlight=false&width=90pc)
 
@@ -57,7 +56,7 @@ The original ECS and ALB service was created by CloudFormation. In this lab, you
 7. In the **Cluster-STACK_NAME** interface
 
 - Select **Task**
-- Check **Monolith-Definition-STACK_NAME** has been updated **Revision 2**
+- Check **Monolith-Definition-STACK_NAME** has been updated to **Revision 22** (or any latest revision)
 
 ![Deploy the container using AWS Fargate](/images/6-ALB/0007-alb.png?featherlight=false&width=90pc)
 
@@ -104,13 +103,12 @@ The original ECS and ALB service was created by CloudFormation. In this lab, you
 - Select **Log groups**
 - Observe event log
 
-
 ![Deploy the container using AWS Fargate](/images/6-ALB/00015-alb.png?featherlight=false&width=90pc)
 
 16. To distinguish between **service** and task. We can do the following steps:
 
-- Select **Service**
-- Select **Edit**
+- Select the service with the latest **Revision**
+- Click **Update**
 
 ![Deploy the container using AWS Fargate](/images/6-ALB/00018-alb.png?featherlight=false&width=90pc)
 

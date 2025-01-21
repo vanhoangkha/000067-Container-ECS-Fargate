@@ -1,6 +1,5 @@
 ---
 title : "Tạo Task Definition"
-date :  "`r Sys.Date()`" 
 weight : 4
 chapter : false
 pre : " <b> 7.4 </b> "
@@ -38,7 +37,7 @@ pre : " <b> 7.4 </b> "
 
 ![ Microservices with AWS Fargate](/images/7-microservices/7.4-CreateTaskDefinition/0004-createtaskdefinition.png?featherlight=false&width=90pc)
 
-5.  Sử dụng **Amazon CloudWatch**
+5.  Tìm tên log group của lab trong CloudFormation stack, sao chép physical ID và dán vào giá trị của khóa `awslogs-group`
 
 ![ Microservices with AWS Fargate](/images/7-microservices/7.4-CreateTaskDefinition/0005-createtaskdefinition.png?featherlight=false&width=90pc)
 

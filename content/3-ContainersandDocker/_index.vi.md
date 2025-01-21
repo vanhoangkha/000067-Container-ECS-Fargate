@@ -1,6 +1,5 @@
 ---
 title : "Giới thiệu Docker và Container"
-date :  "`r Sys.Date()`" 
 weight : 3 
 chapter : false
 pre : " <b> 3. </b> "
@@ -20,5 +19,5 @@ AWS cung cấp hỗ trợ cho cả giải pháp mã nguồn mở lẫn thương 
 
 #### Nội dung
 
-1. [Docker cơ bản](3.1-dockerbasic/)
+1. [Khái quát về Docker](3.1-dockerbasic/)
 2. [Container image](3.2-containerimage/)

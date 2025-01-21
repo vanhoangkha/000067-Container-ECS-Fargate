@@ -1,6 +1,5 @@
 ---
 title : "Kiểm tra CloudFormation"
-date :  "`r Sys.Date()`" 
 weight : 1 
 chapter : false
 pre : " <b> 4.1 </b> "
@@ -11,12 +10,44 @@ pre : " <b> 4.1 </b> "
 1. Truy cập vào **CloudFormation**
 
 - Chọn **stack** đã tạo
-- Chọn **Outputs**
-- Chọn **S3WebsiteURL**
+- Chọn thẻ **Resources**
+- Tìm S3 Bucket có Logical ID là **"MythicalBucket"**
+- Nhấn vào Physical ID của Bucket để truy cập bảng điều khiển của bucket
+
+![Check CloudFormation](/images/4-Monolith/4.1-CheckCloudFormation/a0001-cfn.png?featherlight=false&width=90pc)
+
+- Tại bảng điều khiển bucket, chọn thẻ **Permissions**
+
+![Check CloudFormation](/images/4-Monolith/4.1-CheckCloudFormation/a0002-s3.png?featherlight=false&width=90pc)
+
+Thêm đoạn mã sau vào Bucket Policy:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Id": "PutObjPolicy",
+    "Statement": [
+        {
+            "Sid": "DenyObjectsThatAreNotSSEKMS",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::<replace-with-your-bucket-name>/*"
+        }
+    ]
+}
+```
+![Check CloudFormation](/images/4-Monolith/4.1-CheckCloudFormation/a0003-s3.png?featherlight=false&width=90pc)
+
+2. Quay về giao diện **CloudFormation**
+
+- Mở stack đã tạo
+- Mở thẻ **Output**
+- Tìm khóa **S3WebsiteURL**
 
 ![Check CloudFormation](/images/4-Monolith/4.1-CheckCloudFormation/0001-checkcloudformation.png?featherlight=false&width=90pc)
 
-2. Sử dụng trình duyệt truy cập vào **S3WebsiteURL**.
+3. Sử dụng trình duyệt truy cập qua giá trị trả về của **S3WebsiteURL**.
 
 ![Check CloudFormation](/images/4-Monolith/4.1-CheckCloudFormation/0002-checkcloudformation.png?featherlight=false&width=90pc)
 

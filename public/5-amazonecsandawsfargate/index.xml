@@ -4,6 +4,8 @@
     <title>Deploy the container using AWS Fargate on MONOLITH TO MICROSERVICES WITH DOCKER AND AWS FARGATE</title>
     <link>/5-amazonecsandawsfargate/</link>
     <description>Recent content in Deploy the container using AWS Fargate on MONOLITH TO MICROSERVICES WITH DOCKER AND AWS FARGATE</description>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="/5-amazonecsandawsfargate/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo</generator>
+    <language>en</language>
+    <atom:link href="/5-amazonecsandawsfargate/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

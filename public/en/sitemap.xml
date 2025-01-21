@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/3-containersanddocker/3.1-dockerbasic/</loc>
+    <loc>/7-microservices/7.1-createnewrevision/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="/vi/3-containersanddocker/3.1-dockerbasic/"
+                href="/vi/7-microservices/7.1-createnewrevision/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/3-containersanddocker/3.1-dockerbasic/"
+                href="/7-microservices/7.1-createnewrevision/"
                 />
   </url><url>
     <loc>/2-prerequiste/2.1-createcloudformation/</loc>
@@ -26,16 +26,16 @@
                 href="/2-prerequiste/2.1-createcloudformation/"
                 />
   </url><url>
-    <loc>/7-microservices/7.1-createnewrevision/</loc>
+    <loc>/3-containersanddocker/3.1-dockerbasic/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="/vi/7-microservices/7.1-createnewrevision/"
+                href="/vi/3-containersanddocker/3.1-dockerbasic/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/7-microservices/7.1-createnewrevision/"
+                href="/3-containersanddocker/3.1-dockerbasic/"
                 />
   </url><url>
     <loc>/1-introduce/</loc>
@@ -74,18 +74,6 @@
                 href="/4-monolith/4.1-checkcloudformation/"
                 />
   </url><url>
-    <loc>/2-prerequiste/2.2-setup/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="/vi/2-prerequiste/2.2-setup/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/2-prerequiste/2.2-setup/"
-                />
-  </url><url>
     <loc>/3-containersanddocker/3.2-containerimage/</loc>
     <xhtml:link
                 rel="alternate"
@@ -120,6 +108,18 @@
                 rel="alternate"
                 hreflang="en"
                 href="/2-prerequiste/"
+                />
+  </url><url>
+    <loc>/2-prerequiste/2.2-setup/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="/vi/2-prerequiste/2.2-setup/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/2-prerequiste/2.2-setup/"
                 />
   </url><url>
     <loc>/7-microservices/7.2-updateservice/</loc>

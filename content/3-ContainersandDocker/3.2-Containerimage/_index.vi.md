@@ -1,12 +1,11 @@
 ---
 title : "Container image"
-date :  "`r Sys.Date()`" 
 weight : 2 
 chapter : false
 pre : " <b> 3.2 </b> "
 ---
 
-#### Thực hiện xây dựng container image
+#### Cách xây dựng container image
 
 Trong phần này chúng ta thực hiện build container image. Làm việc với Dockerfile.
 
@@ -16,7 +15,7 @@ Dockerfile là một file dạng text không có phần đuôi mở rộng, ch�
 
 Cú pháp chung của một **Dockerfile**
 
-```
+```dockerfile
 INSTRUCTION arguments
 ```
 
@@ -29,7 +28,7 @@ INSTRUCTION arguments
 
 **FROM**
 
-```
+```dockerfile
 FROM <image> [AS <name>]
 FROM <image>[:<tag>] [AS <name>]
 FROM <image>[@<digest>] [AS <name>]
@@ -37,37 +36,37 @@ FROM <image>[@<digest>] [AS <name>]
 
 **LABEL**
 
-```
+```dockerfile
 LABEL <key>=<value> <key>=<value> <key>=<value> ... <key>=<value> 
 ```
 
 **MAINTAINER**
 
-```
+```dockerfile
 MAINTAINER <name> [<email>]
 ```
 
 **RUN**
 
-```
+```dockerfile
 RUN <command>
 ```
 
 **ADD**
 
-```
+```dockerfile
 ADD [--chown=<user>:<group>] <src>... <dest>
 ADD [--chown=<user>:<group>] ["<src>",... "<dest>"]
 ```
 **COPY**
 
-```
+```dockerfile
 COPY [--chown=<user>:<group>] <src>... <dest>
 COPY [--chown=<user>:<group>] ["<src>",... "<dest>"]
 ```
 **ENV**
 
-```
+```dockerfile
 ENV <key>=<value> ...
 ```
 
@@ -77,7 +76,7 @@ ENV <key>=<value> ...
 
 1. Tạo thư mục cho container image
 
-```
+```bash
 mkdir ~/environment/container-image
 ```
 
@@ -85,7 +84,7 @@ mkdir ~/environment/container-image
 
 2. Nhập **cd container-image** để thay đổi vào thư mục đó.
 
-```
+```bash
 cd ~/environment/container-image
 ```
 
@@ -93,7 +92,7 @@ cd ~/environment/container-image
 
 3. Chạy **touch Dockerfile** để tạo Dockerfile. Tệp này sẽ chứa một tập hợp các bước cần thiết để xây dựng container image.
 
-```
+```bash
 touch Dockerfile
 ```
 
@@ -101,7 +100,7 @@ touch Dockerfile
 
 4. Chạy lệnh dưới đây để cập nhật nội dung Dockerfile
 
-```
+```bash
 cat <<EOF > Dockerfile
 FROM nginx\:latest
 COPY index.html /usr/share/nginx/html
@@ -112,7 +111,7 @@ EOF
 
 5. Chạy **touch index.html** để tạo một tệp html trống sẽ chứa một thông báo đơn giản.
 
-```
+```bash
 touch index.html
 ```
 
@@ -120,7 +119,7 @@ touch index.html
 
 6. Sử dụng **echo** để chuyển một thông báo đơn giản vào tệp **index.html**
 
-```
+```bash
 echo "We've added our own custom content into the container" >> index.html
 ```
 
@@ -128,13 +127,13 @@ echo "We've added our own custom content into the container" >> index.html
 
 7. Sử dụng **docker build -t nginx:1.0 .** để xây dựng container image nginx từ Dockerfile.
 
-```
+```bash
 docker build -t nginx:1.0 .
 ```
 
 - Tham khảo lệnh build image từ một Dockerfile
 
-```
+```bash
 docker build [OPTIONS] PATH | URL | -
 ```
 
@@ -142,30 +141,30 @@ docker build [OPTIONS] PATH | URL | -
 
 8. Sử dụng **docker history nginx:1.0** để xem tất cả các bước và base container. 
 
-```
+```bash
 docker history nginx:1.0
 ```
 
 - Tham khảo lệnh xem lịch sử của một image:
 
-```
+```bash
 docker history [OPTIONS] IMAGE
 ```
 
 ![Building a container image](/images/3-ContainersandDocker/3.2-Containerimage/0008-containerimage.png?featherlight=false&width=90pc)
 
-9. Sử dụng lệnh **docker run -p 8080:80 --name nginx nginx:1.0** để chạy container ( không sử dụng chế độ chạy ngầm nhằm dễ dàng gỡ lỗi)
+9. Sử dụng lệnh **docker run -p 8081:80 --name nginx nginx:1.0** để chạy container ( không sử dụng chế độ chạy ngầm nhằm dễ dàng gỡ lỗi)
 
-```
-docker run -p 8080:80 --name nginx nginx:1.0
+```bash
+docker run -p 8081:80 --name nginx nginx:1.0
 ```
 
 ![Building a container image](/images/3-ContainersandDocker/3.2-Containerimage/0009-containerimage.png?featherlight=false&width=90pc)
 
-10.  Mở một **tab Terminal** khác ( **Window -> New Terminal** ). Chạy **curl http://localhost:8080** trong tab  một vài lần và xem nội dung mới.
+10.  Mở một **tab Terminal** khác ( **Window -> New Terminal** ). Chạy **curl http://localhost:8081** trong tab  một vài lần và xem nội dung mới.
 
-```
-curl http://localhost:8080
+```bash
+curl http://localhost:8081
 ```
 
 ![Building a container image](/images/3-ContainersandDocker/3.2-Containerimage/00010-containerimage.png?featherlight=false&width=90pc)
@@ -176,14 +175,14 @@ curl http://localhost:8080
 
 12. Sử dụng **docker ps -a**
 
-```
+```bash
 docker ps -a
 ```
 ![Building a container image](/images/3-ContainersandDocker/3.2-Containerimage/00012-containerimage.png?featherlight=false&width=90pc)
 
 13.  Sử dụng **sudo docker inspect nginx** để xem thông tin chi tiết về container đã dừng.
 
-```
+```bash
 sudo docker inspect nginx
 ```
 
@@ -191,7 +190,7 @@ sudo docker inspect nginx
 
 14.  Sử dụng **docker rm nginx** để xóa container
 
-```
+```bash
 docker rm nginx
 ```
 
@@ -199,39 +198,39 @@ docker rm nginx
 
 15.  Gắn một số tệp từ máy chủ lưu trữ vào container thay vì nhúng chúng vào image.
 
-```
-docker run -d -p 8080:80 -v /home/ec2-user/environment/container-image/index.html:/usr/share/nginx/html/index.html\:ro --name nginx nginx\:latest
+```bash
+docker run -d -p 8081:80 -v /home/ec2-user/environment/container-image/index.html:/usr/share/nginx/html/index.html\:ro --name nginx nginx\:latest
 ```
 
 ![Building a container image](/images/3-ContainersandDocker/3.2-Containerimage/00015-containerimage.png?featherlight=false&width=90pc)
 
-16.  Thực hiện **curl http://localhost:8080**. Lưu ý rằng mặc dù đây là upstream nginx image từ Docker Hub nhưng nội dung có ở đó.
+16.  Thực hiện **curl http://localhost:8081**. Lưu ý rằng mặc dù đây là upstream nginx image từ Docker Hub nhưng nội dung có ở đó.
 
-```
-curl http://localhost:8080
+```bash
+curl http://localhost:8081
 ```
 
 ![Building a container image](/images/3-ContainersandDocker/3.2-Containerimage/00016-containerimage.png?featherlight=false&width=90pc)
 
 17. Chỉnh sửa tệp index.html
 
-```
+```bash
 echo "This is another line I've added to my container" >> index.html
 ```
 
 ![Building a container image](/images/3-ContainersandDocker/3.2-Containerimage/00017-containerimage.png?featherlight=false&width=90pc)
 
-18. Thử lại **curl http://localhost:8080**
+18. Thử lại **curl http://localhost:8081**
 
-```
-curl http://localhost:8080
+```bash
+curl http://localhost:8081
 ```
 
 ![Building a container image](/images/3-ContainersandDocker/3.2-Containerimage/00018-containerimage.png?featherlight=false&width=90pc)
 
 19. Cuối cùng, chạy **docker stop nginx** và **docker rm nginx** dừng và loại bỏ container
 
-```
+```bash
 docker stop nginx && docker rm nginx
 ```
 

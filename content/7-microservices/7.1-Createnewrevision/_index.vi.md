@@ -1,6 +1,5 @@
 ---
 title : "Tạo Revision"
-date :  "`r Sys.Date()`" 
 weight : 1
 chapter : false
 pre : " <b> 7.1 </b> "
@@ -10,7 +9,7 @@ pre : " <b> 7.1 </b> "
 
 1. Bước đầu tiên, chúng ta thêm một số glue code trong **monolith** để chuyển **like** function thành một dịch vụ riêng (microservice). Trong bài lab, sử dụng **Cloud9** và tìm **app/monolith-service/service/mythicalMysfitsService.py** file. Sau đó thực hiện bỏ bình luận phần code sau:
 
-```
+```python
 # @app.route("/mysfits/<mysfit_id>/fulfill-like", methods=['POST'])
 # def fulfillLikeMysfit(mysfit_id):
 #     serviceResponse = mysfitsTableClient.likeMysfit(mysfit_id)
@@ -23,18 +22,19 @@ pre : " <b> 7.1 </b> "
 
 2. Với tính năng mới được thêm vào **monolith**, chúng ta thực hiện rebuild monolith docker image với tag mới (nolike). 
 
-```
+```bash
  cd ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service
  MONO_ECR_REPOSITORY_URI=$(aws ecr describe-repositories | jq -r .repositories[].repositoryUri | grep mono)
  docker build -t monolith-service:nolike .
 ```
+
 ![ Microservices with AWS Fargate](/images/7-microservices/7.1-Createnewrevision/0002-createrevision.png?featherlight=false&width=90pc)
 
 3. Thực hiện **push** monolith docker image lên **ECR**
 
 - Cách tốt nhất là tránh tag latest, có thể không rõ ràng. Thay vào đó, hãy chọn một tag duy nhất , tên mô tả hoặc người dùng tốt hơn là Git SHA và / hoặc ID phiên bản).
 
-```
+```bash
  docker tag monolith-service:nolike $MONO_ECR_REPOSITORY_URI:nolike
  docker push $MONO_ECR_REPOSITORY_URI:nolike
 ```

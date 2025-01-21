@@ -1,6 +1,5 @@
 ---
 title : "Tạo SSH Key"
-date :  "`r Sys.Date()`" 
 weight : 3 
 chapter : false
 pre : " <b> 2.3 </b> "
@@ -23,7 +22,7 @@ ssh-keygen
 
 2. Chúng ta thực hiện **upload** public key vào **EC2 region**
 
-```
+```bash
 aws ec2 import-key-pair --key-name "mythicaleks" --public-key-material file://~/.ssh/id_rsa.pub
 ```
 
@@ -31,7 +30,7 @@ aws ec2 import-key-pair --key-name "mythicaleks" --public-key-material file://~/
 Nếu gặp lỗi **An error occurred (InvalidKey.Format) when calling the ImportKeyPair operation: Key is not in valid OpenSSH public key format**, bạn có thể thử lệnh sau:
 {{% /notice %}}
 
-```
+```bash
 aws ec2 import-key-pair --key-name "mythicaleks" --public-key-material fileb://~/.ssh/id_rsa.pub
 ```
 
@@ -40,7 +39,7 @@ aws ec2 import-key-pair --key-name "mythicaleks" --public-key-material fileb://~
 3. Truy cập vào **[EC2](https://ap-southeast-1.console.aws.amazon.com/ec2/v2/home?region=ap-southeast-1#KeyPairs:)**
 
 - Chọn **Key pair**
-- Xem key đã được **upload** vào EC2 region
+- Xem key đã được tải lên region hiện tại
 
 ![Set up](/images/2-Prerequiste/2.3-CreateanSSH/0003-createssh.png?featherlight=false&width=90pc)
 

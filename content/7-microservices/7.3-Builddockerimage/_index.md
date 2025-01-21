@@ -1,6 +1,5 @@
 ---
 title : "Build Docker Image"
-date : "`r Sys.Date()`"
 weight : 3
 chapter : false
 pre : " <b> 7.3 </b> "
@@ -31,11 +30,6 @@ pre : " <b> 7.3 </b> "
 
 ![ Microservices with AWS Fargate](/images/7-microservices/7.3-Builddockerimage/0003-builddockerimage.png?featherlight=false&width=90pc)
 
-4. Executing the push successfully.
-
-![ Microservices with AWS Fargate](/images/7-microservices/7.3-Builddockerimage/0004-builddockerimage.png?featherlight=false&width=90pc)
-
-5. Check pushed image in **STACK_NAME-like-XXX**
-
+4. Check pushed image in **STACK_NAME-like-XXX**
 
 ![ Microservices with AWS Fargate](/images/7-microservices/7.3-Builddockerimage/0005-builddockerimage.png?featherlight=false&width=90pc)

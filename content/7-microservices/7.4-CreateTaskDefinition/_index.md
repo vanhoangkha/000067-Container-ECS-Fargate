@@ -1,6 +1,5 @@
 ---
 title : "Create Task Definition"
-date : "`r Sys.Date()`"
 weight : 4
 chapter : false
 pre : " <b>7.4 </b> "
@@ -22,30 +21,30 @@ pre : " <b>7.4 </b> "
 
 ![ Microservices with AWS Fargate](/images/7-microservices/7.4-CreateTaskDefinition/0002-createtaskdefinition.png?featherlight=false&width=90pc)
 
-3. We use the image pushed to **ECR** in the repository **STACK_NAME-like-XXX**
+3. At **Infrastructure requirements**:
+
+    - We use **AWS Fargate**
+    - You can either keep the Operation System, CPU and Memory configurations as in the picture, or change them.
+    - Select **Task role**, select **STACK_NAME-EcsTaskRole-XXX**
+    - Select **Task execution role**, select **STACK_NAME-EcsServiceRole-XXX**
+
+    ![ Microservices with AWS Fargate](/images/7-microservices/7.4-CreateTaskDefinition/0003-createtaskdefinition.png?featherlight=false&width=90pc)
+
+4. We use the image pushed to **ECR** in the repository **STACK_NAME-like-XXX**
 
 - Like service code designed to call an endpoint on a monolith to persist data with **DynamoDB**. Reference the value of the **MONOLITH_URL** environment. We will create the environment with the Key of **MONOLITH_URL** and Value of **ALB** (specifically alb-STACK_NAME-XXX)
 - Select **Next**
 
-![ Microservices with AWS Fargate](/images/7-microservices/7.4-CreateTaskDefinition/0003-createtaskdefinition.png?featherlight=false&width=90pc)
-
-5. Perform environment configuration
-
-- We use **AWS Fargate**
-- **Operating system** is Linux
-- You can customize the Task size
-- Select **Task role**, select **STACK_NAME-EcsServiceRole-XXX**
-
 ![ Microservices with AWS Fargate](/images/7-microservices/7.4-CreateTaskDefinition/0004-createtaskdefinition.png?featherlight=false&width=90pc)
 
-6. Use **Amazon CloudWatch**
+5. Copy the physical ID of the **Amazon CloudWatch Log Group** created in the stack and paste it in the value of the `awslogs-group` key
 
-![ Microservices with AWS Fargate](/images/7-microservices/7.4-CreateTaskDefinition/0005-createtaskdefinition.png?featherlight=false&width=90pc)
+![ Microservices with AWS Fargate](/images/7-microservices/7.4-CreateTaskDefinition/0005-createtaskdefinition.png?featherlight=false&width=50pc)
 
-7. Check again and select **Create**
+6. Check again and select **Create**
 
 ![ Microservices with AWS Fargate](/images/7-microservices/7.4-CreateTaskDefinition/0006-createtaskdefinition.png?featherlight=false&width=90pc)
 
-8. Thus, we have successfully created a Task definition **Microservice-Definition-STACK_NAME**
+7. Thus, we have successfully created a Task definition **Microservice-Definition-STACK_NAME**
 
 ![ Microservices with AWS Fargate](/images/7-microservices/7.4-CreateTaskDefinition/0007-createtaskdefinition.png?featherlight=false&width=90pc)

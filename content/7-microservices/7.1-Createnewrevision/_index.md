@@ -1,6 +1,5 @@
 ---
 title : "Create Revision"
-date : "`r Sys.Date()`"
 weight : 1
 chapter : false
 pre : " <b> 7.1 </b> "
@@ -10,31 +9,32 @@ pre : " <b> 7.1 </b> "
 
 1. In the First step, we add some glue code in **monolith** to turn the **like** function into a separate service (microservice). In the lab, use **Cloud9** and find the **app/monolith-service/service/mythicalMysfitsService.py** file. Then do uncomment the following code:
 
-```
+```python
 # @app.route("/mysfits/<mysfit_id>/fulfill-like", methods=['POST'])
 # def fulfillLikeMysfit(mysfit_id):
-# serviceResponse = mysfitsTableClient.likeMysfit(mysfit_id)
-# flaskResponse = Response(serviceResponse)
-# flaskResponse.headers["Content-Type"] = "application/json"
-# return flaskResponse
+#   serviceResponse = mysfitsTableClient.likeMysfit(mysfit_id)
+#   flaskResponse = Response(serviceResponse)
+#   flaskResponse.headers["Content-Type"] = "application/json"
+#   return flaskResponse
 ```
 
 ![ Microservices with AWS Fargate](/images/7-microservices/7.1-Createnewrevision/0001-createrevision.png?featherlight=false&width=90pc)
 
 2. With the new feature added **monolith**, we rebuild the monolith docker image with a new tag (nolike).
 
-```
+```bash
  cd ~/environment/amazon-ecs-mythicalmysfits-workshop/workshop-1/app/monolith-service
  MONO_ECR_REPOSITORY_URI=$(aws ecr describe-repositories | jq -r .repositories[].repositoryUri | grep mono)
  docker build -t monolith-service:nolike .
 ```
+
 ![ Microservices with AWS Fargate](/images/7-microservices/7.1-Createnewrevision/0002-createrevision.png?featherlight=false&width=90pc)
 
 3. Execute **push** monolith docker image onto **ECR**
 
 - It is best to avoid the latest tag, which can be ambiguous. Instead, choose a unique tag, descriptive name, or preferably a Git SHA and/or version ID).
 
-```
+```bash
  docker tag monolith-service:nolike $MONO_ECR_REPOSITORY_URI:nolike
  docker push $MONO_ECR_REPOSITORY_URI:nolike
 ```
