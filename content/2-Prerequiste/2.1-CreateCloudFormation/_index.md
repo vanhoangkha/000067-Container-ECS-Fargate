@@ -21,11 +21,11 @@ pre : " <b> 2.1 </b> "
     - Click **Generate Hash**
     - Copy the **hashed** password. Save it so you would enter it during the CloudFormation Stack creation.
 
-    ![Create Stack CloudFormation](/images/2-Prerequiste/2.1-CreateCloudFormation/argon2.png?featherlight=false&width=90pc)
+    <!-- ![Create Stack CloudFormation](/images/2-Prerequiste/2.1-CreateCloudFormation/argon2.png?featherlight=false&width=90pc) -->
 
 2. Go to [the CloudFormation Console](https://ap-southeast-1.console.aws.amazon.com/cloudformation/home?region=ap-southeast-1) to proceed with stack creation.
 
-![CFN Console](/images/2-Prerequiste/2.1-CreateCloudFormation/0001-cloudformationmenu.png)
+<!-- ![CFN Console](/images/2-Prerequiste/2.1-CreateCloudFormation/0001-cloudformationmenu.png) -->
 
 Use [this yaml file](/workloads/core.yaml) to deploy your CloudFormation stack.
 
